@@ -1,0 +1,54 @@
+{
+  "name": "rekosu",
+  "scripts": {
+    "dev": "dotenvx run -f .env.dev -- vinxi dev",
+    "build": "dotenvx run -f .env.prod -- vinxi build",
+    "start": "dotenvx run -f .env.prod -- vinxi start",
+    "lint": "eslint --fix \"**/*.{ts,tsx,js,jsx}\"",
+    "infra:dev:up": "dotenvx run -f .env.dev -- docker compose -f docker-compose.dev.yml up --remove-orphans --build -d",
+    "infra:dev:down": "dotenvx run -f .env.dev -- docker compose -f docker-compose.dev.yml down",
+    "infra:prod:up": "dotenvx run -f .env.prod -- docker compose -f docker-compose.prod.yml up --build -d",
+    "infra:prod:down": "dotenvx run -f .env.prod -- docker compose -f docker-compose.prod.yml down"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^20.11.26",
+    "@types/pg": "^8.15.2",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "drizzle-kit": "^0.31.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-solid": "^0.14.3",
+    "prettier": "^3.5.3",
+    "prettier-eslint": "^16.4.2",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@auth/core": "0.39.1",
+    "@dotenvx/dotenvx": "^1.44.1",
+    "@solid-mediakit/auth": "^3.1.3",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.1",
+    "@solidjs/start": "^1.1.0",
+    "@types/chroma-js": "^3.1.1",
+    "autoprefixer": "^10.4.19",
+    "chroma-js": "^3.1.2",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "format-duration-time": "^1.5.4",
+    "ioredis": "^5.6.1",
+    "osu-api-v2-js": "^1.1.3",
+    "osu-web.js": "^2.6.0",
+    "pg": "^8.10.0",
+    "postcss": "^8.4.40",
+    "postgres": "3.4.5",
+    "solid-js": "^1.9.7",
+    "tailwindcss": "^3.4.7",
+    "zod": "^3.25.7"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+}

@@ -22,18 +22,27 @@ async function get<TResult>(key: any[]): Promise<TResult | null> {
   return null;
 }
 
-async function set<TValue>(key: any[], value: TValue) {
+async function set<TValue>(
+  key: any[],
+  value: TValue,
+  options?: { expiration?: number }
+) {
   const compositeKey = joinCompositeKey(key);
 
   const pipeline = redis.pipeline();
 
   pipeline.set(joinCompositeKey(key), JSON.stringify(value));
-  pipeline.expire(compositeKey, 24 * 60 * 60);
+  pipeline.expire(compositeKey, options?.expiration ?? 24 * 60 * 60);
 
   await pipeline.exec();
+}
+
+async function remove(key: any[]) {
+  await redis.del(joinCompositeKey(key));
 }
 
 export const cache = {
   get,
   set,
+  remove,
 };

@@ -1,6 +1,6 @@
 import { Accessor, ParentProps, Show } from 'solid-js';
 import { Difficulties } from '../difficulties';
-import Player from './player';
+import HorizontalPlayer from './horzontal-player';
 import { A, AnchorProps, createAsync } from '@solidjs/router';
 import { getBeatmap } from '~/server';
 import { Throbber } from '~/features/ui/throbber';
@@ -11,7 +11,7 @@ import { Stats } from './stats';
 import { Metadata } from './metadata';
 import { formatDate } from '~/utils/formatting';
 import { Beatmap, Beatmapset } from 'osu-api-v2-js';
-import { BeatmapDetails } from '~/server/actions';
+import { BeatmapDetails } from '~/server/queries';
 
 export type HeaderProps = {
   beatmapId: number;
@@ -68,7 +68,7 @@ export default function Header(props: HeaderProps) {
               <Controls beatmap={beatmap()} beatmapset={beatmapset()} />
             </div>
             <div class='ml-auto mt-[40px] min-w-[275px] flex flex-col gap-[1px]'>
-              <Player url={beatmapset().preview_url} />
+              <HorizontalPlayer url={beatmapset().preview_url} />
 
               <Stats beatmap={beatmap()} />
 

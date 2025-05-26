@@ -17,9 +17,10 @@ export type BeatmapDetails = {
 export async function getBeatmap(beatmapId: number) {
   const clients = await osu.getClients();
 
-  const beatmap = await circuit<Beatmap | null>([
+  let beatmap: Beatmap | null = null;
+  beatmap = await circuit<Beatmap | null>([
     () => cache.get(['beatmaps', beatmapId]),
-    ...clients.map(client => () => client.getBeatmap(beatmapId)),
+    ...osu.perform(clients, client => client.getBeatmap(beatmapId)),
   ]);
   await cache.set(['beatmaps', beatmapId], beatmap);
 
@@ -29,7 +30,9 @@ export async function getBeatmap(beatmapId: number) {
 
   const beatmapset = await circuit<Beatmapset | null>([
     () => cache.get(['beatmapsets', beatmap.beatmapset_id]),
-    ...clients.map(client => () => client.getBeatmapset(beatmap.beatmapset_id)),
+    ...osu.perform(clients, client =>
+      client.getBeatmapset(beatmap.beatmapset_id)
+    ),
   ]);
   await cache.set(['beatmapsets', beatmap.beatmapset_id], beatmapset);
 
@@ -78,30 +81,34 @@ export async function getSimilarBeatmapsets(beatmapId: number) {
 
   const clients = await osu.getClients();
 
-  const fetchedBeatmaps = await circuit<Beatmap.WithBeatmapset[]>(
-    clients.map(
-      client => () =>
+  const fetchedBeatmaps = await circuit<Beatmap.WithBeatmapset[] | null>(
+    osu.perform(
+      clients,
+      client =>
         client.getBeatmaps(
           similarBeatmaps.map(beatmap => beatmap.id)
-        ) as unknown as Promise<Beatmap.WithBeatmapset[]>
+        ) as unknown as Promise<Beatmap.WithBeatmapset[] | null>
     )
   );
 
   if (!fetchedBeatmaps) {
-    return notFound('Failed to find beatmap...');
+    return notFound('Failed to find beatmaps...');
   }
 
   const results = fetchedBeatmaps
     .map(beatmap => ({
       ...beatmap,
-      similarity: beatmapById[beatmap.id]![0].similarity as number,
+      similarity: beatmapById[beatmap.id]?.[0].similarity ?? 0,
     }))
     .sort((a, b) => b.similarity - a.similarity)
     .reduce((beatmapsets, beatmap) => {
-      const beatmapset = beatmapsets.get(beatmap.beatmapset_id) ?? {
-        ...beatmap.beatmapset,
-        beatmaps: [],
-      };
+      const beatmapset =
+        beatmapsets.get(beatmap.beatmapset_id) ??
+        ({
+          ...beatmap.beatmapset,
+          beatmaps: [],
+        } as unknown as SimilarBeatmaps['beatmapsets'][0]);
+
       beatmapset.beatmaps.push(beatmap);
 
       if (beatmapset.beatmaps.length == 1) {

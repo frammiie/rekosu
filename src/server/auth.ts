@@ -1,6 +1,8 @@
 import { type SolidAuthConfig } from '@solid-mediakit/auth';
 import Osu from '@auth/core/providers/osu';
 import { serverEnv } from '~/env/server';
+import { circuit } from '~/utils/handlers';
+import { cache } from './cache';
 
 export const authOptions: SolidAuthConfig = {
   providers: [
@@ -31,10 +33,38 @@ export const authOptions: SolidAuthConfig = {
           expires_at: account.expires_at!,
         };
       } else if (Date.now() < token.osu.expires_at * 1000) {
-        // Access token still valid
+        // Check if session still valid
+        const validSession = await circuit([
+          () => cache.get(['session_valid', token.osu.id]),
+          async () => {
+            const response = await fetch(
+              'https://osu.ppy.sh/api/v2/session/verify',
+              {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  'User-Agent': 'Rekosu',
+                  Authorization: 'Bearer ' + token.osu.access_token,
+                },
+              }
+            );
+
+            return response.ok;
+          },
+        ]);
+
+        if (!validSession) {
+          token.error = 'InvalidSessionError';
+        }
+
+        await cache.set(['session_valid', token.osu.id], validSession, {
+          expiration: 60,
+        });
+
         return token;
       } else {
-        // Need to refresh token
+        // Token about to/expired, need to refresh token
         try {
           const response = await fetch('https://osu.ppy.sh/oauth/token', {
             method: 'POST',
@@ -53,14 +83,18 @@ export const authOptions: SolidAuthConfig = {
 
           const content = await response.json();
 
+          if (content.error) {
+            throw new Error(JSON.stringify(content));
+          }
+
           token.osu = {
             ...token.osu,
             access_token: content?.access_token,
             refresh_token: content?.refresh_token,
             expires_at: content?.expires_at,
           };
-        } catch {
-          console.error(`Failed to refresh token for ${token.osu.id}`);
+        } catch (error) {
+          console.error(`Failed to refresh token for ${token.osu.id}`, error);
 
           token.error = 'RefreshTokenError';
         }
@@ -80,6 +114,8 @@ export const authOptions: SolidAuthConfig = {
     },
   },
   basePath: '/api/auth',
+  trustHost: serverEnv.AUTH_TRUST_HOST === 'true',
+  secret: serverEnv.AUTH_OSU_SECRET,
 };
 
 declare module '@auth/core/types' {

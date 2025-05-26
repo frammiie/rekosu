@@ -26,7 +26,7 @@ export function difficultyColor(value: number): string {
 }
 
 const similarity = {
-  domain: [0.65, 0.75, 0.85, 0.95],
+  domain: [0.6, 0.7, 0.8, 0.9],
   colors: ['#FF4E6F', '#FF8068', '#F6F05C', '#7CFF4F'],
 };
 

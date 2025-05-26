@@ -1,4 +1,4 @@
-import { SimilarBeatmaps } from '~/server/actions';
+import { SimilarBeatmaps } from '~/server/queries';
 import { A } from '@solidjs/router';
 import { For, Show } from 'solid-js';
 import { difficultyColor, similarityColor } from '../../difficulties/colors';

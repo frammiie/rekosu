@@ -5,7 +5,7 @@ import { Card } from '../beatmapsets/card';
 import { Throbber } from '~/features/ui/throbber';
 import { Error } from '~/features/ui/error';
 import { NavSuspense } from '~/features/ui/nav-suspense';
-import { SimilarBeatmaps } from '~/server/actions';
+import { SimilarBeatmaps } from '~/server/queries';
 
 export type SimilarProps = {
   beatmapId: number;

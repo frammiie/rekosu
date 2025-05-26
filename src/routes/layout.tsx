@@ -1,13 +1,14 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { ErrorBoundary, Match, ParentProps, Switch } from 'solid-js';
+import { isServer } from 'solid-js/web';
 
 export default function Layout(props: ParentProps) {
   const auth = useAuth();
 
-  // Relogin upon refresh failure
-  if (auth.session()?.error) {
-    auth.signIn('osu');
+  // Sign out client-side upon indicated error
+  if (!isServer && auth.session()?.error) {
+    auth.signOut();
   }
 
   return (

@@ -1,21 +1,12 @@
-import { createSignal, Show } from 'solid-js';
+import { Show } from 'solid-js';
+import { useAudio } from '../../context/audio-player/use-audio';
 
 type PlayerProps = {
   url: string;
 };
 
-export default function Player(props: PlayerProps) {
-  let audioRef: HTMLAudioElement = null!;
-  const [playing, setPlaying] = createSignal(false);
-  const [progress, setProgress] = createSignal(0);
-
-  function handleToggle() {
-    if (!audioRef.paused) {
-      audioRef.pause();
-    } else {
-      audioRef.play();
-    }
-  }
+export default function HorizontalPlayer(props: PlayerProps) {
+  const { playing, progress, handleToggle } = useAudio(props.url);
 
   return (
     <div class='bg-[#0005] py-[5px] relative backdrop-blur-sm'>
@@ -59,17 +50,6 @@ export default function Player(props: PlayerProps) {
           style={{ transform: `scaleX(${progress()})` }}
         />
       </Show>
-      <audio
-        ref={audioRef}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        onEnded={() => setProgress(0)}
-        onAbort={() => setPlaying(false)}
-        ontimeupdate={e =>
-          setProgress(e.currentTarget.currentTime / e.currentTarget.duration)
-        }
-        src={`https:${props.url}`}
-      />
     </div>
   );
 }

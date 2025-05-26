@@ -10,7 +10,6 @@ import Layout from './routes/layout';
 export default function App() {
   return (
     <Router
-      //explicitLinks={true}
       root={props => (
         <MetaProvider>
           <Title>Rekosu</Title>

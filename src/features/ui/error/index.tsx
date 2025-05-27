@@ -1,10 +1,10 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Show } from 'solid-js';
-import { isError } from '~/utils/errors';
+import { isError, type ErrorResponse } from '~/utils/errors';
 
 export type ErrorProps = {
-  response: any;
+  response: ErrorResponse;
 };
 
 export function Error(props: ErrorProps) {

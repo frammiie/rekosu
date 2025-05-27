@@ -1,7 +1,9 @@
-import { Accessor, ParentProps, Show } from 'solid-js';
+import type { Accessor, ParentProps } from 'solid-js';
+import { Show } from 'solid-js';
 import { Difficulties } from '../difficulties';
-import HorizontalPlayer from './horzontal-player';
-import { A, AnchorProps, createAsync } from '@solidjs/router';
+import { HorizontalPlayer } from './horizontal-player';
+import type { AnchorProps } from '@solidjs/router';
+import { A, createAsync } from '@solidjs/router';
 import { getBeatmap } from '~/server';
 import { Throbber } from '~/features/ui/throbber';
 import { Error } from '~/features/ui/error';
@@ -10,8 +12,9 @@ import { NavSuspense } from '~/features/ui/nav-suspense';
 import { Stats } from './stats';
 import { Metadata } from './metadata';
 import { formatDate } from '~/utils/formatting';
-import { Beatmap, Beatmapset } from 'osu-api-v2-js';
-import { BeatmapDetails } from '~/server/queries';
+import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { ErrorResponse } from '~/utils/errors';
+import type { BeatmapDetails } from '~/server/queries';
 
 export type HeaderProps = {
   beatmapId: number;
@@ -20,7 +23,7 @@ export type HeaderProps = {
 export default function Header(props: HeaderProps) {
   const data = createAsync(() =>
     getBeatmap(Number(props.beatmapId))
-  ) as unknown as Accessor<BeatmapDetails>;
+  ) as Accessor<BeatmapDetails>;
 
   const beatmap = () => data()?.beatmap;
   const beatmapset = () => data()?.beatmapset;
@@ -30,7 +33,7 @@ export default function Header(props: HeaderProps) {
       <NavSuspense fallback={<Throbber />}>
         <Show
           when={beatmap() && beatmapset()}
-          fallback={<Error response={data()} />}
+          fallback={<Error response={data() as unknown as ErrorResponse} />}
         >
           <div
             class='absolute inset-0 bg-cover bg-center -z-10'

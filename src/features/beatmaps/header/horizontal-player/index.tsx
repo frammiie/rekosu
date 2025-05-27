@@ -5,8 +5,9 @@ type PlayerProps = {
   url: string;
 };
 
-export default function HorizontalPlayer(props: PlayerProps) {
-  const { playing, progress, handleToggle } = useAudio(props.url);
+export function HorizontalPlayer(props: PlayerProps) {
+  const url = () => `https:${props.url}`;
+  const { playing, progress, handleToggle } = useAudio(url);
 
   return (
     <div class='bg-[#0005] py-[5px] relative backdrop-blur-sm'>
@@ -44,12 +45,10 @@ export default function HorizontalPlayer(props: PlayerProps) {
           </Show>
         </button>
       </div>
-      <Show when={progress() > 0}>
-        <div
-          class='bg-white h-[3px] w-full absolute bottom-0 origin-left duration-[600ms]'
-          style={{ transform: `scaleX(${progress()})` }}
-        />
-      </Show>
+      <div
+        class='bg-white h-[3px] w-full absolute bottom-0 origin-left duration-[600ms]'
+        style={{ transform: `scaleX(${progress()})` }}
+      />
     </div>
   );
 }

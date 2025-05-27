@@ -1,8 +1,8 @@
+import type { JSX } from 'solid-js';
 import {
   createEffect,
   createSignal,
   For,
-  JSX,
   Match,
   Show,
   Switch,
@@ -10,7 +10,7 @@ import {
 } from 'solid-js';
 import { difficultyColor } from './colors';
 import { A } from '@solidjs/router';
-import { Beatmap } from 'osu-api-v2-js';
+import type { Beatmap } from 'osu-api-v2-js';
 
 type Difficulty = {
   beatmapId: number;
@@ -25,6 +25,7 @@ export type DifficultiesProps = {
 };
 
 export function Difficulties(props: DifficultiesProps) {
+  // eslint-disable-next-line solid/reactivity
   const [active, setActive] = createSignal<Difficulty>(props.selected);
 
   createEffect(() => {
@@ -90,7 +91,7 @@ export function Difficulties(props: DifficultiesProps) {
       </ol>
       <div style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}>
         <span class='font-semibold'>{active().version} </span>
-        <span class='hidden group-hover:inline-block text-sm text-yellow-500'>
+        <span class='hidden group-hover:inline-block text-sm text-yellow-400'>
           Star rating: {active().difficultyRating}
         </span>
       </div>

@@ -1,4 +1,4 @@
-import { createEffect, createSignal, Show } from 'solid-js';
+import { Show } from 'solid-js';
 import { useAudio } from '~/features/beatmaps/context/audio-player/use-audio';
 
 export type CircularPlayerProps = {
@@ -6,7 +6,8 @@ export type CircularPlayerProps = {
 };
 
 export function CircularPlayer(props: CircularPlayerProps) {
-  const { playing, progress, handleToggle } = useAudio(`https:${props.url}`);
+  const url = () => `https:${props.url}`;
+  const { playing, progress, handleToggle } = useAudio(url);
   const radius = 11;
 
   return (
@@ -21,7 +22,7 @@ export function CircularPlayer(props: CircularPlayerProps) {
             stroke-width='3'
             stroke-dashoffset={(1 - progress()) * (2 * Math.PI * radius)}
             stroke-dasharray={String(2 * Math.PI * radius)}
-            style='transform:rotate(-90deg);transform-origin: 50% 50%;'
+            style={{"transform":"rotate(-90deg)","transform-origin":"50% 50%"}}
             class='stroke-[#fffc] duration-[600ms]'
           />
         </svg>

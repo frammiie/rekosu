@@ -1,5 +1,6 @@
 import { useLocation } from '@solidjs/router';
-import { createContext, createEffect, ParentProps } from 'solid-js';
+import type { ParentProps } from 'solid-js';
+import { createContext, createEffect } from 'solid-js';
 
 export type AudioPlayerContext = {
   play: (
@@ -15,28 +16,40 @@ export const AudioPlayerContext = createContext<AudioPlayerContext>();
 
 export function AudioPlayerProvider(props: ParentProps) {
   const location = useLocation();
-  const audioRef = (<audio />) as HTMLAudioElement;
+
+  let audioRef!: HTMLAudioElement;
+
   let active: {
     id: string;
-    handler: (e: any) => void;
     onProgress: (progress: number) => void;
     onEnd: () => void;
   } | null = null;
 
-  function unattach() {
+  function handleEnded() {
     if (!active) return;
 
-    audioRef.removeEventListener('timeupdate', active.handler);
     active.onProgress(0);
     active.onEnd();
     audioRef.pause();
     active = null;
   }
 
+  function handleTimeUpdate(event: Event) {
+    if (!active) return;
+
+    if (event.currentTarget instanceof HTMLAudioElement) {
+      if (isNaN(event.currentTarget.duration)) return;
+
+      active.onProgress(
+        event.currentTarget.currentTime / event.currentTarget.duration
+      );
+    }
+  }
+
   createEffect(() => {
     location.pathname;
 
-    unattach();
+    handleEnded();
   });
 
   async function play(
@@ -51,22 +64,15 @@ export function AudioPlayerProvider(props: ParentProps) {
       return;
     }
 
-    // If any previous active callers, unattach
-    if (active) unattach();
+    // If any previous, end
+    if (active) handleEnded();
 
     audioRef.setAttribute('src', url);
     active = {
       id,
-      handler: (e: any) => {
-        if (isNaN(e.currentTarget.duration)) return;
-
-        onProgress(e.currentTarget.currentTime / e.currentTarget.duration);
-      },
       onProgress,
       onEnd,
     };
-
-    audioRef.addEventListener('timeupdate', active.handler);
 
     await audioRef.play();
   }
@@ -78,7 +84,11 @@ export function AudioPlayerProvider(props: ParentProps) {
   return (
     <AudioPlayerContext.Provider value={{ play, pause }}>
       {props.children}
-      {audioRef}
+      <audio
+        ref={audioRef}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
+      />
     </AudioPlayerContext.Provider>
   );
 }

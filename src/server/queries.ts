@@ -5,7 +5,7 @@ import { beatmaps } from '../../drizzle/schema';
 import { cosineDistance, desc, eq, ne, sql } from 'drizzle-orm';
 import { cache } from './cache';
 import { osu } from './osu';
-import { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
 import { circuit } from '~/utils/handlers';
 import { notFound } from '~/utils/errors';
 

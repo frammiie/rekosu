@@ -1,19 +1,17 @@
-import { SimilarBeatmaps } from '~/server/queries';
+import type { SimilarBeatmaps } from '~/server/queries';
 import { A } from '@solidjs/router';
 import { For, Show } from 'solid-js';
 import { difficultyColor, similarityColor } from '../../difficulties/colors';
 import { Progress } from '~/features/ui/progress';
 import { HitCircle, ModeCircle } from '../../difficulties';
 import { CircularPlayer } from './circular-player';
-import { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
 
 export type BeatmapsetCard = {
   beatmapset: SimilarBeatmaps['beatmapsets'][0];
 };
 
 export function Card(props: BeatmapsetCard) {
-  const beatmapset = props.beatmapset;
-
   return (
     <div
       class='relative group'
@@ -23,35 +21,37 @@ export function Card(props: BeatmapsetCard) {
         <div
           class='min-w-[100px] bg-cover  rounded-[10px] flex items-center justify-center'
           style={{
-            'background-image': `url(${beatmapset.covers['list@2x']})`,
+            'background-image': `url(${props.beatmapset.covers['list@2x']})`,
             'background-position-x': '-10px',
           }}
         >
-          <CircularPlayer url={beatmapset.preview_url} />
+          <CircularPlayer url={props.beatmapset.preview_url} />
         </div>
         <div
           class='bg-cover bg-center w-full rounded-[10px] -ml-[10px] min-w-0'
           style={{
-            'background-image': `url(${beatmapset.covers['card@2x']})`,
+            'background-image': `url(${props.beatmapset.covers['card@2x']})`,
           }}
         >
           <div class='bg-gradient-to-r from-[#1a1a1a] to-[#0009] p-[10px] -ml-[10px] rounded-[10px] h-full flex'>
             <div class='min-w-0 flex flex-col'>
-              <div class='truncate break-all leading-5'>{beatmapset.title}</div>
+              <div class='truncate break-all leading-5'>
+                {props.beatmapset.title}
+              </div>
               <div class='text-sm truncate break-all leading-5'>
-                By {beatmapset.artist}
+                By {props.beatmapset.artist}
               </div>
               <div class='text-xs leading-5 truncate break-all'>
-                mapped by <b class='font-medium'>{beatmapset.creator}</b>
+                mapped by <b class='font-medium'>{props.beatmapset.creator}</b>
               </div>
-              <DifficultyBars beatmapset={beatmapset} />
+              <DifficultyBars beatmapset={props.beatmapset} />
             </div>
           </div>
         </div>
       </div>
       <div class='hidden group-hover:block group-hover:motion-safe:animate-fade-in absolute w-full top-auto bg-[#26292b] border-2 border-t-0 rounded-b-[10px] border-[#fff6] z-10 p-[5px]'>
         <div class='flex flex-col gap-[2.5px]'>
-          <For each={beatmapset.beatmaps}>
+          <For each={props.beatmapset.beatmaps}>
             {(beatmap, index) => (
               <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-2 py-0.5'>
                 <A
@@ -104,7 +104,11 @@ function DifficultyChip(props: DifficultyChipProps) {
         'background-color': difficultyColor(props.difficultyRating),
         'text-shadow': 'none',
       }}
-      class='text-xs rounded-full inline-flex items-center gap-[2.5px] px-[5px] w-[50px] text-black font-medium'
+      classList={{
+        'text-black': props.difficultyRating < 6.5,
+        'text-yellow-400': props.difficultyRating >= 6.5,
+      }}
+      class='text-xs rounded-full inline-flex items-center gap-[2.5px] px-[5px] w-[50px] font-medium'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'

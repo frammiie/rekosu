@@ -1,6 +1,6 @@
-import { Beatmap, Beatmapset } from 'osu-api-v2-js';
-import { splitProps } from 'solid-js';
-import { Progress, ProgressProps } from '~/features/ui/progress';
+import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { ProgressProps } from '~/features/ui/progress';
+import { Progress } from '~/features/ui/progress';
 
 export type MetadataProps = {
   beatmap: Beatmap.Extended;

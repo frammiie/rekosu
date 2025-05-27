@@ -1,4 +1,4 @@
-import { Beatmap } from 'osu-api-v2-js';
+import type { Beatmap } from 'osu-api-v2-js';
 import { formatDuration } from '~/utils/formatting';
 import { Stat } from './stat';
 

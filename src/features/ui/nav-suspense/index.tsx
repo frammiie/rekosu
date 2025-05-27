@@ -1,4 +1,5 @@
-import { createEffect, createSignal, JSX, Show, Suspense } from 'solid-js';
+import type { JSX} from 'solid-js';
+import { createEffect, createSignal, Show, Suspense } from 'solid-js';
 import { useBeforeLeave, useIsRouting } from '@solidjs/router';
 
 export type RouteSuspenseProps = {

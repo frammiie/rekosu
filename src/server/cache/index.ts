@@ -5,11 +5,11 @@ export const redis = new Redis({
   host: serverEnv.REDIS_HOST,
 });
 
-function joinCompositeKey(key: any[]) {
+function joinCompositeKey(key: unknown[]) {
   return key.join('_');
 }
 
-async function get<TResult>(key: any[]): Promise<TResult | null> {
+async function get<TResult>(key: unknown[]): Promise<TResult | null> {
   const compositeKey = joinCompositeKey(key);
 
   const cached = await redis.get(compositeKey);
@@ -23,7 +23,7 @@ async function get<TResult>(key: any[]): Promise<TResult | null> {
 }
 
 async function set<TValue>(
-  key: any[],
+  key: unknown[],
   value: TValue,
   options?: { expiration?: number }
 ) {
@@ -37,7 +37,7 @@ async function set<TValue>(
   await pipeline.exec();
 }
 
-async function remove(key: any[]) {
+async function remove(key: unknown[]) {
   await redis.del(joinCompositeKey(key));
 }
 

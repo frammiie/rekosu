@@ -1,6 +1,7 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
-import { ErrorBoundary, Match, ParentProps, Switch } from 'solid-js';
+import type { ParentProps} from 'solid-js';
+import { ErrorBoundary, Match, Switch } from 'solid-js';
 import { isServer } from 'solid-js/web';
 
 export default function Layout(props: ParentProps) {

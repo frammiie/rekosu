@@ -8,6 +8,7 @@
     "plugin:solid/typescript",
     "plugin:@typescript-eslint/recommended"
   ],
+  "ignorePatterns": ["docker/**"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn"
   }

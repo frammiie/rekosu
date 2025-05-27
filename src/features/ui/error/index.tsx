@@ -2,6 +2,7 @@ import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Show } from 'solid-js';
 import { isError, type ErrorResponse } from '~/utils/errors';
+import { Link } from '../link';
 
 export type ErrorProps = {
   response: ErrorResponse;
@@ -27,9 +28,9 @@ export function Error(props: ErrorProps) {
             <div>Getting many errors?</div>
             <div>
               Maybe try{' '}
-              <A href='#' class='underline' onClick={() => auth.signIn('osu')}>
+              <Link href='#' onClick={() => auth.signIn('osu')}>
                 logging in
-              </A>{' '}
+              </Link>{' '}
               to sidestep the global ratelimit.
             </div>
           </div>

@@ -1,11 +1,12 @@
 import type { SimilarBeatmaps } from '~/server/queries';
 import { A } from '@solidjs/router';
 import { For, Show } from 'solid-js';
-import { difficultyColor, similarityColor } from '../../difficulties/colors';
+import { similarityColor } from '../../difficulties/colors';
 import { Progress } from '~/features/ui/progress';
 import { HitCircle, ModeCircle } from '../../difficulties';
 import { CircularPlayer } from './circular-player';
-import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import { DifficultyChip } from './difficulty-chip';
+import { DifficultyBars } from '../difficulty-bars';
 
 export type BeatmapsetCard = {
   beatmapset: SimilarBeatmaps['beatmapsets'][0];
@@ -19,7 +20,7 @@ export function Card(props: BeatmapsetCard) {
     >
       <div class='h-[100px] bg-[#fff1] flex gap-[5px] rounded-[10px] overflow-hidden'>
         <div
-          class='min-w-[100px] bg-cover  rounded-[10px] flex items-center justify-center'
+          class='min-w-[100px] bg-cover rounded-[10px] flex items-center justify-center'
           style={{
             'background-image': `url(${props.beatmapset.covers['list@2x']})`,
             'background-position-x': '-10px',
@@ -89,84 +90,6 @@ export function Card(props: BeatmapsetCard) {
         </div>
       </div>
       <div class='hidden group-hover:block absolute inset-0 border-2 border-b-0 rounded-t-[10px] border-[#fff6] pointer-events-none' />
-    </div>
-  );
-}
-
-type DifficultyChipProps = {
-  difficultyRating: number;
-};
-
-function DifficultyChip(props: DifficultyChipProps) {
-  return (
-    <div
-      style={{
-        'background-color': difficultyColor(props.difficultyRating),
-        'text-shadow': 'none',
-      }}
-      classList={{
-        'text-black': props.difficultyRating < 6.5,
-        'text-yellow-400': props.difficultyRating >= 6.5,
-      }}
-      class='text-xs rounded-full inline-flex items-center gap-[2.5px] px-[5px] w-[50px] font-medium'
-    >
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        class='size-3'
-      >
-        <path
-          fill='currentColor'
-          d='M10.846 3.822c.427-1.027 1.88-1.027 2.308 0l1.743 4.19l4.524.363c1.108.089 1.558 1.472.713 2.195l-3.447 2.953l1.053 4.415c.258 1.081-.918 1.936-1.867 1.357L12 16.929l-3.873 2.366c-.95.58-2.126-.276-1.868-1.357l1.053-4.415l-3.447-2.953c-.844-.723-.395-2.106.714-2.195l4.524-.363z'
-        />
-      </svg>
-      {props.difficultyRating.toFixed(2)}
-    </div>
-  );
-}
-
-type DifficultyBarsProps = {
-  beatmapset: Beatmapset.Extended.WithBeatmap;
-};
-
-function DifficultyBars(props: DifficultyBarsProps) {
-  return (
-    <div class='overflow-hidden flex gap-[2px] mt-auto items-center'>
-      <For
-        each={Object.entries(
-          Object.groupBy(props.beatmapset.beatmaps, beatmap => beatmap.mode)
-        )}
-      >
-        {([mode, beatmaps]) => (
-          <>
-            <Show
-              when={mode === 'osu'}
-              fallback={
-                <ModeCircle
-                  mode={mode as Beatmap['mode']}
-                  class='size-[14px] text-[0.6rem] flex-shrink-0'
-                />
-              }
-            >
-              <HitCircle class='size-5 -m-0.5 flex-shrink-0' />
-            </Show>
-            <For each={beatmaps}>
-              {beatmap => (
-                <div
-                  class='min-w-[6px] h-[12px] rounded-full'
-                  style={{
-                    'background-color': difficultyColor(
-                      beatmap.difficulty_rating
-                    ),
-                  }}
-                />
-              )}
-            </For>
-          </>
-        )}
-      </For>
     </div>
   );
 }

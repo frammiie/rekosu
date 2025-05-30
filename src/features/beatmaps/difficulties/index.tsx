@@ -36,7 +36,10 @@ export function Difficulties(props: DifficultiesProps) {
   });
 
   return (
-    <div class='flex flex-col gap-[10px] group'>
+    <div
+      class='flex flex-col gap-[10px] group'
+      style={{ 'text-shadow': 'none' }}
+    >
       <ol
         class='bg-[#0006] flex w-fit items-center rounded-[10px] max-w-[600px] backdrop-blur-sm flex-wrap'
         onMouseLeave={() => setActive(props.selected)}

@@ -19,7 +19,7 @@ export type HeaderProps = {
   beatmapId: number;
 };
 
-export default function Header(props: HeaderProps) {
+export function Header(props: HeaderProps) {
   const data = createAsync(() =>
     getBeatmap(Number(props.beatmapId))
   ) as Accessor<BeatmapDetails>;

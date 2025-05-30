@@ -8,11 +8,11 @@ import { CircularPlayer } from './circular-player';
 import { DifficultyChip } from './difficulty-chip';
 import { DifficultyBars } from '../difficulty-bars';
 
-export type BeatmapsetCard = {
+export type CardProps = {
   beatmapset: SimilarBeatmaps['beatmapsets'][0];
 };
 
-export function Card(props: BeatmapsetCard) {
+export function Card(props: CardProps) {
   return (
     <div
       class='relative group'

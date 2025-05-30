@@ -56,6 +56,8 @@ export const authOptions: SolidAuthConfig = {
 
         if (!validSession) {
           token.error = 'InvalidSessionError';
+
+          await cache.set(['session_valid', token.osu.id], false);
         }
 
         await cache.set(['session_valid', token.osu.id], validSession, {
@@ -97,6 +99,8 @@ export const authOptions: SolidAuthConfig = {
           console.error(`Failed to refresh token for ${token.osu.id}`, error);
 
           token.error = 'RefreshTokenError';
+
+          await cache.set(['session_valid', token.osu.id], false);
         }
       }
 

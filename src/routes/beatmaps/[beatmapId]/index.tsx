@@ -2,8 +2,9 @@ import type { RouteDefinition } from '@solidjs/router';
 import { useParams } from '@solidjs/router';
 import { getBeatmap, getSimilarBeatmapsets } from '~/server/queries';
 import { Similar } from '~/features/beatmaps/similar';
-import Header from '~/features/beatmaps/header';
+import { Header } from '~/features/beatmaps/header';
 import { AudioPlayerProvider } from '~/features/beatmaps/context/audio-player';
+import { SectionHeader } from '~/features/ui/section-header';
 
 export const route = {
   preload: ({ params }) => {
@@ -17,10 +18,8 @@ export default function Beatmap() {
 
   return (
     <main>
-      <div class='h-[55px] px-10 bg-[#fff1] flex items-center'>
-        Beatmap info
-      </div>
-      <div class='h-[50px] px-10 bg-[#fff1] flex items-center'>Info</div>
+      <SectionHeader>Beatmap info</SectionHeader>
+      <SectionHeader variant='secondary'>Info</SectionHeader>
       <AudioPlayerProvider>
         <Header beatmapId={Number(params.beatmapId)} />
         <Similar beatmapId={Number(params.beatmapId)} />

@@ -28,10 +28,6 @@ export default function Layout(props: ParentProps) {
           >
             Rekosu
           </A>
-          {/* <nav class='flex gap-[10px] mt-1'>
-            <A href='/'>Home</A>
-            <A href='/'>Statistics</A>
-          </nav> */}
           <div class='ml-auto flex flex-col gap-[5px] items-end text-xs'>
             <Switch>
               <Match when={auth.status() === 'authenticated'}>

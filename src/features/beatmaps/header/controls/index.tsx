@@ -37,7 +37,7 @@ export function Controls(props: ControlsProps) {
             />
           </svg>
         </AnchorButton>
-        <AnchorButton href={`osu://b/${props.beatmap.id}`}>
+        <AnchorButton href={`osu://b/${props.beatmap.id}`} target='_self'>
           <span>osu!direct</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'

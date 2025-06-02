@@ -39,7 +39,7 @@
     "drizzle-orm": "^0.43.1",
     "format-duration-time": "^1.5.4",
     "ioredis": "^5.6.1",
-    "osu-api-v2-js": "^1.1.3",
+    "osu-api-v2-js": "^2.0.0",
     "osu-web.js": "^2.6.0",
     "pg": "^8.10.0",
     "postcss": "^8.4.40",

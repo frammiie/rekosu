@@ -16,7 +16,9 @@ async function get<TResult>(key: unknown[]): Promise<TResult | null> {
   if (cached) {
     try {
       return JSON.parse(cached);
-    } catch {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return null;

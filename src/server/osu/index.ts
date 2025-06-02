@@ -43,6 +43,8 @@ function perform<TResult>(
       try {
         return await action(client);
       } catch (error) {
+        console.error(error);
+
         if (
           error! instanceof APIError ||
           (error as APIError).status_code !== 401

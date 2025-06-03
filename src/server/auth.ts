@@ -32,6 +32,8 @@ export const authOptions: SolidAuthConfig = {
           refresh_token: account.refresh_token!,
           expires_at: account.expires_at!,
         };
+
+        await cache.remove(['session_valid', token.osu.id]);
       } else if (Date.now() < token.osu.expires_at * 1000) {
         // Check if session still valid
         const validSession = await circuit([

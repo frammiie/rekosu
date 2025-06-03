@@ -8,7 +8,11 @@ import { cache } from '../cache';
 let client: API | null = null;
 
 async function getClients() {
-  if (!client) {
+  const expiresSoon = client
+    ? client.expires.getTime() - Date.now() < 60 * 60 * 1000
+    : false;
+
+  if (!client || expiresSoon) {
     client = await API.createAsync(
       serverEnv.AUTH_OSU_ID,
       serverEnv.AUTH_OSU_SECRET

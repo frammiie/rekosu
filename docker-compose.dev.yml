@@ -9,12 +9,8 @@ services:
       - 5432:5432
     volumes:
       - ./docker/database/data:/var/lib/postgresql/data
+      - ./docker/database/exchange:/opt/exchange
     restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
   
   cache:
     image: redis:8.0.1-alpine
@@ -34,12 +30,5 @@ services:
       - APP_SECRET=${ANALYTICS_APP_SECRET}
       - REDIS_URL=redis://cache:6379
     depends_on:
-      database:
-        condition: service_healthy
-    init: true
+      - database
     restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "curl http://localhost:3001/api/heartbeat"]
-      interval: 5s
-      timeout: 5s
-      retries: 5

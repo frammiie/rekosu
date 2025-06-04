@@ -26,6 +26,7 @@ Thumbs.db
 
 # Project specific
 /docker/database/data
+/docker/database/exchange
 /docker/proxy/certs
 /docker/proxy/certbot
 /TODO.md

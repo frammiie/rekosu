@@ -8,6 +8,17 @@ import { Link } from '~/features/ui/link';
 export default function Layout(props: ParentProps) {
   const auth = useAuth();
 
+  if (umami && auth.status() === 'authenticated') {
+    const session = auth.session();
+
+    if (session?.user) {
+      umami.identify({
+        id: session.user.id ?? '',
+        name: session.user.name ?? '',
+      });
+    }
+  }
+
   // Sign out client-side upon indicated session error
   if (!isServer && auth.session()?.error) {
     auth.signOut();

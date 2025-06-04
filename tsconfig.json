@@ -9,7 +9,7 @@
     "jsxImportSource": "solid-js",
     "resolveJsonModule": true,
     "jsx": "preserve",
-    "types": ["vite/client", "@solidjs/start/env"],
+    "types": ["vite/client", "@solidjs/start/env", "@types/umami-browser"],
     "baseUrl": "./",
     "paths": {
       "~/*": ["./src/*"]

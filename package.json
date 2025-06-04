@@ -32,6 +32,7 @@
     "@solidjs/router": "^0.15.1",
     "@solidjs/start": "^1.1.0",
     "@types/chroma-js": "^3.1.1",
+    "@types/umami-browser": "^2.13.0",
     "autoprefixer": "^10.4.19",
     "chroma-js": "^3.1.2",
     "date-fns": "^4.1.0",

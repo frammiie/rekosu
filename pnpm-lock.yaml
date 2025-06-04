@@ -29,6 +29,9 @@ importers:
       '@types/chroma-js':
         specifier: ^3.1.1
         version: 3.1.1
+      '@types/umami-browser':
+        specifier: ^2.13.0
+        version: 2.13.0
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.21(postcss@8.5.3)
@@ -1240,6 +1243,9 @@ packages:
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
+
+  '@types/umami-browser@2.13.0':
+    resolution: {integrity: sha512-kKIrJk1REFefrIOrSeJAy9dMEuvalcc4R7bz8Di1gXLJwBu+cEk0XBzYSy0Q0uWDJERsn8oHJv5uUTExQRqdKw==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -5667,6 +5673,8 @@ snapshots:
   '@types/resolve@1.20.2': {}
 
   '@types/triple-beam@1.3.5': {}
+
+  '@types/umami-browser@2.13.0': {}
 
   '@types/unist@3.0.3': {}
 

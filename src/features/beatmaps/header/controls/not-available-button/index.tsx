@@ -17,6 +17,8 @@ export function NotAvailableButton(props: NotAvailableProps) {
           href={props.availability.more_information!}
           class='text-xs underline text-gray-300'
           target='_blank'
+          data-umami-event='not-available-information-click'
+          data-umami-event-url={props.availability.more_information}
         >
           Check here for more information
         </A>

@@ -19,6 +19,7 @@ export function Controls(props: ControlsProps) {
       >
         <AnchorButton
           href={`https://osu.ppy.sh/beatmapsets/${props.beatmapset.id}/download`}
+          data-umami-event='download-beatmap-click'
         >
           <span>Download</span>
           <svg
@@ -37,7 +38,11 @@ export function Controls(props: ControlsProps) {
             />
           </svg>
         </AnchorButton>
-        <AnchorButton href={`osu://b/${props.beatmap.id}`} target='_self'>
+        <AnchorButton
+          href={`osu://b/${props.beatmap.id}`}
+          target='_self'
+          data-umami-event='osu!direct-beatmap-click'
+        >
           <span>osu!direct</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -65,7 +70,10 @@ export function Controls(props: ControlsProps) {
           </svg>
         </AnchorButton>
       </Show>
-      <AnchorButton href={`https://osu.ppy.sh/beatmaps/${props.beatmap.id}`}>
+      <AnchorButton
+        href={`https://osu.ppy.sh/beatmaps/${props.beatmap.id}`}
+        data-umami-event='osu!web-beatmap-click'
+      >
         <span>osu!web</span>
         <svg
           xmlns='http://www.w3.org/2000/svg'

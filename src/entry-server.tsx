@@ -11,7 +11,6 @@ export default createHandler(() => (
             defer
             src='https://an.rekosu.sh/script.js'
             data-website-id='d69f7a9c-76d0-4c01-a318-5036a71f9f71'
-            data-host-url='https://osu.rekosu.sh'
           />
           {assets}
         </head>

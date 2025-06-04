@@ -8,7 +8,7 @@ import { Link } from '~/features/ui/link';
 export default function Layout(props: ParentProps) {
   const auth = useAuth();
 
-  if (umami && auth.status() === 'authenticated') {
+  if (!isServer && auth.status() === 'authenticated') {
     const session = auth.session();
 
     if (session?.user) {

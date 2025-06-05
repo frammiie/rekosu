@@ -5,7 +5,7 @@ import { FileRoutes } from '@solidjs/start/router';
 import { Suspense } from 'solid-js';
 import './app.css';
 import { SessionProvider } from '@solid-mediakit/auth/client';
-import Layout from './routes/layout';
+import { Layout } from './routes/layout';
 
 export default function App() {
   return (

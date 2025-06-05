@@ -58,7 +58,7 @@ export function Difficulties(props: DifficultiesProps) {
                 data-umami-event-difficulty-rating={difficulty.difficultyRating}
               >
                 <div
-                  class='p-[5px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'
+                  class='size-[38px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'
                   classList={{
                     'border-white bg-[#0006]':
                       difficulty.version === props.selected.version,
@@ -69,6 +69,7 @@ export function Difficulties(props: DifficultiesProps) {
                     when={difficulty.mode === 'osu'}
                     fallback={
                       <ModeCircle
+                        class='size-6'
                         mode={difficulty.mode}
                         style={{
                           'border-color': difficultyColor(

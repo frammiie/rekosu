@@ -12,7 +12,10 @@ export function HorizontalPlayer(props: PlayerProps) {
   return (
     <div class='bg-[#0005] py-[5px] relative backdrop-blur-sm'>
       <div class='flex justify-center'>
-        <button onClick={handleToggle}>
+        <button
+          onClick={handleToggle}
+          data-umami-event='horizontal-player-click'
+        >
           <Show
             when={!playing()}
             fallback={

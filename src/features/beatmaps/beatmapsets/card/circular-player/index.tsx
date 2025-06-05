@@ -22,11 +22,18 @@ export function CircularPlayer(props: CircularPlayerProps) {
             stroke-width='3'
             stroke-dashoffset={(1 - progress()) * (2 * Math.PI * radius)}
             stroke-dasharray={String(2 * Math.PI * radius)}
-            style={{"transform":"rotate(-90deg)","transform-origin":"50% 50%"}}
+            style={{
+              transform: 'rotate(-90deg)',
+              'transform-origin': '50% 50%',
+            }}
             class='stroke-[#fffc] duration-[600ms]'
           />
         </svg>
-        <button onClick={handleToggle} class='absolute'>
+        <button
+          onClick={handleToggle}
+          class='absolute'
+          data-umami-event='circular-player-click'
+        >
           <Show
             when={!playing()}
             fallback={

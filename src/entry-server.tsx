@@ -1,4 +1,5 @@
 import { createHandler, StartServer } from '@solidjs/start/server';
+import { serverEnv } from './env/server';
 
 export default createHandler(() => (
   <StartServer
@@ -7,12 +8,10 @@ export default createHandler(() => (
         <head>
           <meta charset='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
-          {!import.meta.dev && (
-            <script
-              src='https://an.rekosu.sh/script.js'
-              data-website-id='d69f7a9c-76d0-4c01-a318-5036a71f9f71'
-            />
-          )}
+          <script
+            src={serverEnv.ANALYTICS_SCRIPT_URL}
+            data-website-id={serverEnv.ANALYTICS_WEBSITE_ID}
+          />
           {assets}
         </head>
         <body>

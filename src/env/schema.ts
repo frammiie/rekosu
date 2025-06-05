@@ -12,6 +12,8 @@ export const serverScheme = z.object({
   AUTH_ORIGIN: z.string().optional(),
   DATABASE_URL: z.string(),
   REDIS_HOST: z.string(),
+  ANALYTICS_WEBSITE_ID: z.string(),
+  ANALYTICS_SCRIPT_URL: z.string(),
 });
 
 export const clientScheme = z.object({

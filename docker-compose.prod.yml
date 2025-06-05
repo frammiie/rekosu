@@ -11,6 +11,8 @@ services:
       AUTH_URL:
       DATABASE_URL:
       REDIS_HOST:
+      ANALYTICS_WEBSITE_ID:
+      ANALYTICS_SCRIPT_URL:
     networks:
       - internal
     depends_on:

@@ -27,8 +27,12 @@ export function Error(props: ErrorProps) {
             <div>Getting many errors?</div>
             <div>
               Maybe try{' '}
-              <Link href='#' onClick={() => auth.signIn('osu')}>
-                logging in
+              <Link
+                href='#'
+                onClick={() => auth.signIn('osu')}
+                data-umami-event='error-sign-in-click'
+              >
+                signing in
               </Link>{' '}
               to sidestep the global ratelimit.
             </div>

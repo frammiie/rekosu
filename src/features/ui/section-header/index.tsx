@@ -11,7 +11,7 @@ export function SectionHeader(props: SectionHeaderProps) {
         'h-[55px]': !props.variant || props.variant === 'primary',
         'h-[50px]': props.variant === 'secondary',
       }}
-      class='px-10 bg-[#fff1] flex items-center'
+      class='md:px-10 px-5 bg-[#fff1] flex items-center gap-[5px]'
       children={props.children}
     />
   );

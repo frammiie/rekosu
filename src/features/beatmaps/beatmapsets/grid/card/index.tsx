@@ -1,18 +1,26 @@
-import type { SimilarBeatmaps } from '~/server/queries';
 import { A } from '@solidjs/router';
-import { For, Show } from 'solid-js';
-import { similarityColor } from '../../difficulties/colors';
+import { createMemo, For, Show } from 'solid-js';
+import { similarityColor } from '../../../difficulties/colors';
 import { Progress } from '~/features/ui/progress';
-import { HitCircle, ModeCircle } from '../../difficulties';
+import { HitCircle, ModeCircle } from '../../../difficulties';
 import { CircularPlayer } from './circular-player';
 import { DifficultyChip } from './difficulty-chip';
-import { DifficultyBars } from '../difficulty-bars';
+import { DifficultyBars } from '../../difficulty-bars';
+import type { GridProps } from '..';
 
 export type CardProps = {
-  beatmapset: SimilarBeatmaps['beatmapsets'][0];
+  beatmapset: GridProps['beatmapsets'][0];
 };
 
 export function Card(props: CardProps) {
+  const beatmaps = createMemo(() =>
+    props.beatmapset.beatmaps.sort(
+      (a, b) =>
+        (a.similarity ? -a.similarity : a.difficulty_rating) -
+        (b.similarity ? -b.similarity : b.difficulty_rating)
+    )
+  );
+
   return (
     <div
       class='relative group'
@@ -50,9 +58,9 @@ export function Card(props: CardProps) {
           </div>
         </div>
       </div>
-      <div class='hidden group-hover:block group-hover:motion-safe:animate-fade-in absolute w-full top-auto bg-[#26292b] border-2 border-t-0 rounded-b-[10px] border-[#fff6] z-10 p-[5px]'>
+      <div class='hidden group-hover:block group-hover:motion-safe:animate-fade-in absolute w-full top-auto bg-[#26292b] border-2 border-t-0 rounded-b-[10px] border-[#fff6] z-10 p-[5px] max-h-[200px] overflow-y-auto'>
         <div class='flex flex-col gap-[2.5px]'>
-          <For each={props.beatmapset.beatmaps}>
+          <For each={beatmaps()}>
             {(beatmap, index) => (
               <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-2 py-0.5'>
                 <A
@@ -73,16 +81,18 @@ export function Card(props: CardProps) {
                   <DifficultyChip
                     difficultyRating={beatmap.difficulty_rating}
                   />
-                  <span class='break-all'>{beatmap.version}</span>
-                  <div class='flex gap-[5px] ml-auto items-center'>
-                    <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
-                    <Progress
-                      value={beatmap.similarity}
-                      color={similarityColor(beatmap.similarity)}
-                      class='w-[150px] flex-shrink-0'
-                      delay={index() * 50}
-                    />
-                  </div>
+                  <span class='truncate'>{beatmap.version}</span>
+                  {beatmap.similarity != null && (
+                    <div class='flex gap-[5px] ml-auto items-center'>
+                      <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
+                      <Progress
+                        value={beatmap.similarity}
+                        color={similarityColor(beatmap.similarity)}
+                        class='md:w-[150px] w-[50px] flex-shrink-0'
+                        delay={index() * 50}
+                      />
+                    </div>
+                  )}
                 </A>
               </div>
             )}

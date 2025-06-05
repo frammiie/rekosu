@@ -1,9 +1,6 @@
-import type { Accessor } from 'solid-js';
 import { Show } from 'solid-js';
 import { Difficulties } from '../difficulties';
 import { HorizontalPlayer } from './horizontal-player';
-import { createAsync } from '@solidjs/router';
-import { getBeatmap } from '~/server';
 import { Throbber } from '~/features/ui/throbber';
 import { Error } from '~/features/ui/error';
 import { Portal } from 'solid-js/web';
@@ -16,23 +13,21 @@ import { Mapper } from './mapper';
 import { Controls } from './controls';
 
 export type HeaderProps = {
-  beatmapId: number;
+  details: BeatmapDetails;
 };
 
 export function Header(props: HeaderProps) {
-  const data = createAsync(() =>
-    getBeatmap(Number(props.beatmapId))
-  ) as Accessor<BeatmapDetails>;
-
-  const beatmap = () => data()?.beatmap;
-  const beatmapset = () => data()?.beatmapset;
+  const beatmap = () => props.details?.beatmap;
+  const beatmapset = () => props.details?.beatmapset;
 
   return (
     <div class='bg-[#fff1] min-h-[364px] flex'>
       <NavSuspense fallback={<Throbber />}>
         <Show
           when={beatmap() && beatmapset()}
-          fallback={<Error response={data() as unknown as ErrorResponse} />}
+          fallback={
+            <Error response={props.details as unknown as ErrorResponse} />
+          }
         >
           <div
             class='absolute inset-0 bg-cover bg-center -z-10'
@@ -40,7 +35,7 @@ export function Header(props: HeaderProps) {
               'background-image': `url(${beatmapset().covers['cover@2x']})`,
             }}
           />
-          <div class='min-h-[364px] px-10 pt-5 bg-[#0006] flex'>
+          <div class='min-h-[364px] md:px-10 px-5 pt-5 bg-[#0006] flex md:flex-row flex-col gap-[20px]'>
             <div
               class='flex flex-col'
               style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}
@@ -69,7 +64,7 @@ export function Header(props: HeaderProps) {
 
               <Controls beatmap={beatmap()} beatmapset={beatmapset()} />
             </div>
-            <div class='ml-auto mt-[40px] min-w-[275px] flex flex-col gap-[1px]'>
+            <div class='md:ml-auto md:mt-auto min-w-[275px] flex flex-col gap-[1px]'>
               <HorizontalPlayer url={beatmapset().preview_url} />
 
               <Stats beatmap={beatmap()} />

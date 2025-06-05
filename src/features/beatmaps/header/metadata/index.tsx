@@ -9,7 +9,7 @@ export type MetadataProps = {
 
 export function Metadata(props: MetadataProps) {
   return (
-    <div class='bg-[#0005] h-full p-[10px] flex flex-col gap-[5px] backdrop-blur-sm'>
+    <div class='bg-[#0005] h-full p-[10px] flex flex-col gap-[5px] backdrop-blur-sm pb-[50px]'>
       <Attribute label='Circle Size' value={props.beatmap.cs} />
       <Attribute label='HP Drain' value={props.beatmap.drain} delay={100} />
       <Attribute label='Accuracy' value={props.beatmap.accuracy} delay={200} />

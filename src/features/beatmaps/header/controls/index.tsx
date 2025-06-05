@@ -10,7 +10,7 @@ export type ControlsProps = {
 
 export function Controls(props: ControlsProps) {
   return (
-    <div class='my-[20px] flex gap-[5px] items-center h-[45px]'>
+    <div class='my-[20px] flex gap-[5px] items-center min-h-[45px] flex-wrap'>
       <Show
         when={!props.beatmapset.availability.download_disabled}
         fallback={

@@ -1,10 +1,11 @@
-import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { Beatmap } from 'osu-api-v2-js';
 import { For, Show } from 'solid-js';
 import { ModeCircle, HitCircle } from '../../difficulties';
 import { difficultyColor } from '../../difficulties/colors';
+import type { GridProps } from '../grid';
 
 export type DifficultyBarsProps = {
-  beatmapset: Beatmapset.Extended.WithBeatmap;
+  beatmapset: GridProps['beatmapsets'][0];
 };
 
 export function DifficultyBars(props: DifficultyBarsProps) {

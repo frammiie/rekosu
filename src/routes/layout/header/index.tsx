@@ -1,7 +1,7 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Switch, Match } from 'solid-js';
-import { HitCircle, ModeCircle } from '~/features/beatmaps/difficulties';
+import { HitCircle } from '~/features/beatmaps/difficulties';
 
 export function Header() {
   const auth = useAuth();

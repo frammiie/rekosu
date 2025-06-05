@@ -22,29 +22,29 @@ export async function getBeatmap(beatmapId: number) {
     () => cache.get(['beatmaps', beatmapId]),
     ...osu.perform(clients, client => client.getBeatmap(beatmapId)),
   ]);
-  await cache.set(['beatmaps', beatmapId], beatmap);
 
   if (!beatmap) {
     return notFound('Failed to find beatmap...');
   }
+  await cache.set(['beatmaps', beatmapId], beatmap);
 
-  const beatmapset = await circuit<Beatmapset | null>([
+  const beatmapset = await circuit<Beatmapset.Extended.Plus | null>([
     () => cache.get(['beatmapsets', beatmap.beatmapset_id]),
     ...osu.perform(clients, client =>
       client.getBeatmapset(beatmap.beatmapset_id)
     ),
   ]);
-  await cache.set(['beatmapsets', beatmap.beatmapset_id], beatmapset);
 
-  if (!beatmap) {
+  if (!beatmapset) {
     return notFound('Failed to find beatmapset...');
   }
+  await cache.set(['beatmapsets', beatmap.beatmapset_id], beatmapset);
 
   return { beatmap, beatmapset } as BeatmapDetails;
 }
 
 export type SimilarBeatmaps = {
-  beatmapsets: (Beatmapset.Extended.WithBeatmap & {
+  beatmapsets: (Beatmapset.Extended.Plus & {
     beatmaps: (Beatmap & { similarity: number })[];
   })[];
 };
@@ -125,4 +125,15 @@ export async function getSimilarBeatmapsets(beatmapId: number) {
   await cache.set(['similar_beatmaps', beatmapId], result);
 
   return result as SimilarBeatmaps;
+}
+
+export type RecentBeatmapsets = {
+  beatmapsets: Beatmapset.Extended.Plus[];
+};
+
+export async function getRecentBeatmapsets() {
+  const beatmapsets =
+    (await cache.get<Beatmapset.Extended.Plus[]>(['recent_beatmapsets'])) ?? [];
+
+  return { beatmapsets };
 }

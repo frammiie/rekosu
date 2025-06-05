@@ -1,4 +1,4 @@
-import type { JSX} from 'solid-js';
+import type { JSX } from 'solid-js';
 import { createEffect, createSignal, Show, Suspense } from 'solid-js';
 import { useBeforeLeave, useIsRouting } from '@solidjs/router';
 
@@ -39,7 +39,7 @@ export function NavSuspense(props: RouteSuspenseProps) {
         {props.children}
         <Show when={showFallback()}>
           <div
-            class='absolute inset-0 bg-[#0006] z-50'
+            class='absolute inset-0 bg-[#0006] z-50 animate-fade-in'
             children={props.fallback}
           />
         </Show>

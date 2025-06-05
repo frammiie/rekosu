@@ -41,7 +41,7 @@ export function Difficulties(props: DifficultiesProps) {
       style={{ 'text-shadow': 'none' }}
     >
       <ol
-        class='bg-[#0006] flex w-fit items-center rounded-[10px] max-w-[600px] backdrop-blur-sm flex-wrap'
+        class='bg-[#0006] flex w-fit items-center rounded-[10px] backdrop-blur-sm flex-wrap'
         onMouseLeave={() => setActive(props.selected)}
       >
         <For
@@ -58,7 +58,7 @@ export function Difficulties(props: DifficultiesProps) {
                 data-umami-event-difficulty-rating={difficulty.difficultyRating}
               >
                 <div
-                  class='size-[38px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'
+                  class='p-[5px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'
                   classList={{
                     'border-white bg-[#0006]':
                       difficulty.version === props.selected.version,
@@ -70,7 +70,6 @@ export function Difficulties(props: DifficultiesProps) {
                     fallback={
                       <ModeCircle
                         mode={difficulty.mode}
-                        class='size-6'
                         style={{
                           'border-color': difficultyColor(
                             difficulty.difficultyRating

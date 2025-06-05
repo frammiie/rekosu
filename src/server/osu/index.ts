@@ -15,7 +15,9 @@ async function getClients() {
   if (!client || expiresSoon) {
     client = await API.createAsync(
       serverEnv.AUTH_OSU_ID,
-      serverEnv.AUTH_OSU_SECRET
+      serverEnv.AUTH_OSU_SECRET,
+      undefined,
+      { retry_maximum_amount: 0 }
     );
   }
 
@@ -27,6 +29,7 @@ async function getClients() {
     if (session && session.osu.accessToken && !session.error) {
       userClient = new API({
         access_token: session.osu.accessToken,
+        retry_maximum_amount: 0,
       });
     }
   }
@@ -47,13 +50,13 @@ function perform<TResult>(
       try {
         return await action(client);
       } catch (error) {
-        console.error(error);
-
         if (
           error! instanceof APIError ||
           (error as APIError).status_code !== 401
         )
-          return null;
+          throw error;
+
+        console.error(error);
 
         // Handle 401 by marking session as invalid
         const requestEvent = getRequestEvent();

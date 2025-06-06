@@ -74,10 +74,9 @@ export function Header(props: HeaderProps) {
           </div>
           <Portal mount={document.getElementById('backdrop')!}>
             <div
-              class='fixed inset-0'
+              class='fixed inset-0 bg-cover bg-center'
               style={{
                 'background-image': `url(${beatmapset().covers['cover@2x']})`,
-                'background-size': 'cover',
               }}
             />
           </Portal>

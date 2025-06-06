@@ -1,16 +1,8 @@
-import type { JSX } from 'solid-js';
-import {
-  createEffect,
-  createSignal,
-  For,
-  Match,
-  Show,
-  Switch,
-  untrack,
-} from 'solid-js';
+import { createEffect, createSignal, For, untrack } from 'solid-js';
 import { difficultyColor } from './colors';
 import { A } from '@solidjs/router';
 import type { Beatmap } from 'osu-api-v2-js';
+import { ModeIcon } from '../mode-icon';
 
 type Difficulty = {
   beatmapId: number;
@@ -29,8 +21,7 @@ export function Difficulties(props: DifficultiesProps) {
   const [active, setActive] = createSignal<Difficulty>(props.selected);
 
   createEffect(() => {
-    const _active = untrack(active);
-    if (_active == props.selected) return;
+    if (untrack(active) == props.selected) return;
 
     setActive(props.selected);
   });
@@ -65,28 +56,13 @@ export function Difficulties(props: DifficultiesProps) {
                     'opacity-75': difficulty.version !== props.selected.version,
                   }}
                 >
-                  <Show
-                    when={difficulty.mode === 'osu'}
-                    fallback={
-                      <ModeCircle
-                        class='size-6'
-                        mode={difficulty.mode}
-                        style={{
-                          'border-color': difficultyColor(
-                            difficulty.difficultyRating
-                          ),
-                          color: difficultyColor(difficulty.difficultyRating),
-                        }}
-                      />
-                    }
-                  >
-                    <HitCircle
-                      class='size-[38px] -m-2'
-                      style={{
-                        color: difficultyColor(difficulty.difficultyRating),
-                      }}
-                    />
-                  </Show>
+                  <ModeIcon
+                    mode={difficulty.mode}
+                    style={{
+                      fill: difficultyColor(difficulty.difficultyRating),
+                    }}
+                    class='size-6'
+                  />
                 </div>
               </A>
             </li>
@@ -99,50 +75,6 @@ export function Difficulties(props: DifficultiesProps) {
           Star rating: {active().difficultyRating}
         </span>
       </div>
-    </div>
-  );
-}
-
-export function HitCircle(props: JSX.SvgSVGAttributes<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      {...props}
-    >
-      <path
-        fill='currentColor'
-        d='M12 15.75a3.75 3.75 0 1 1 0-7.5a3.75 3.75 0 0 1 0 7.5'
-      />
-      <path
-        fill='currentColor'
-        d='M12 4.25a7.75 7.75 0 1 0 0 15.5a7.75 7.75 0 0 0 0-15.5M5.75 12a6.25 6.25 0 1 1 12.5 0a6.25 6.25 0 0 1-12.5 0'
-      />
-    </svg>
-  );
-}
-
-export type ModeCircleProps = JSX.HTMLAttributes<HTMLDivElement> & {
-  mode: Beatmap['mode'];
-};
-
-export function ModeCircle(props: ModeCircleProps) {
-  return (
-    <div
-      {...props}
-      class={[
-        'rounded-full border-2 font-medium border-[#fff6] flex items-center justify-center',
-        props.class,
-      ].join(' ')}
-    >
-      <Switch>
-        <Match when={props.mode === 'osu'}>O</Match>
-        <Match when={props.mode === 'mania'}>M</Match>
-        <Match when={props.mode === 'taiko'}>T</Match>
-        <Match when={props.mode === 'fruits'}>F</Match>
-      </Switch>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import type { Beatmap } from 'osu-api-v2-js';
-import { For, Show } from 'solid-js';
-import { ModeCircle, HitCircle } from '../../difficulties';
+import { For } from 'solid-js';
 import { difficultyColor } from '../../difficulties/colors';
 import type { GridProps } from '../grid';
+import { ModeIcon } from '../../mode-icon';
 
 export type DifficultyBarsProps = {
   beatmapset: GridProps['beatmapsets'][0];
@@ -18,21 +18,14 @@ export function DifficultyBars(props: DifficultyBarsProps) {
       >
         {([mode, beatmaps]) => (
           <>
-            <Show
-              when={mode === 'osu'}
-              fallback={
-                <ModeCircle
-                  mode={mode as Beatmap['mode']}
-                  class='size-[14px] text-[0.6rem] flex-shrink-0'
-                />
-              }
-            >
-              <HitCircle class='size-5 -m-0.5 flex-shrink-0' />
-            </Show>
+            <ModeIcon
+              mode={mode as Beatmap['mode']}
+              class='size-[15px] fill-white'
+            />
             <For each={beatmaps}>
               {beatmap => (
                 <div
-                  class='min-w-[6px] h-[12px] rounded-full'
+                  class='min-w-[6px] h-[15px] rounded-full'
                   style={{
                     'background-color': difficultyColor(
                       beatmap.difficulty_rating

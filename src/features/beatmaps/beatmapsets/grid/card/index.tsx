@@ -2,11 +2,11 @@ import { A } from '@solidjs/router';
 import { createMemo, createSignal, createUniqueId, For, Show } from 'solid-js';
 import { similarityColor } from '../../../difficulties/colors';
 import { Progress } from '~/features/ui/progress';
-import { HitCircle, ModeCircle } from '../../../difficulties';
 import { CircularPlayer } from './circular-player';
 import { DifficultyChip } from './difficulty-chip';
 import { DifficultyBars } from '../../difficulty-bars';
 import type { GridProps } from '..';
+import { ModeIcon } from '~/features/beatmaps/mode-icon';
 
 export type CardProps = {
   beatmapset: GridProps['beatmapsets'][0];
@@ -83,22 +83,15 @@ export function Card(props: CardProps) {
           <div class='flex flex-col gap-[2.5px]'>
             <For each={beatmaps()}>
               {(beatmap, index) => (
-                <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-2 py-0.5'>
+                <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-0.5 py-0.5'>
                   <A
                     href={`/beatmaps/${beatmap.id}`}
                     class='flex gap-[5px] items-center w-full'
                   >
-                    <Show
-                      when={beatmap.mode === 'osu'}
-                      fallback={
-                        <ModeCircle
-                          mode={beatmap.mode}
-                          class='size-4 text-[0.6rem] flex-shrink-0'
-                        />
-                      }
-                    >
-                      <HitCircle class='size-6 -m-1 flex-shrink-0' />
-                    </Show>
+                    <ModeIcon
+                      mode={beatmap.mode}
+                      class='size-4 fill-white flex-shrink-0'
+                    />
                     <DifficultyChip
                       difficultyRating={beatmap.difficulty_rating}
                     />

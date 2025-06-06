@@ -1,5 +1,5 @@
 // @refresh reload
-import { Link, MetaProvider, Title } from '@solidjs/meta';
+import { Link, Meta, MetaProvider, Title } from '@solidjs/meta';
 import { Router } from '@solidjs/router';
 import { FileRoutes } from '@solidjs/start/router';
 import { Suspense } from 'solid-js';
@@ -12,8 +12,12 @@ export default function App() {
     <Router
       root={props => (
         <MetaProvider>
-          <Link rel='icon' href='/assets/icons/stash/circle-dot-white.svg' />
+          <Link rel='icon' href='/favicon.svg' />
           <Title>Rekosu</Title>
+          <Meta
+            name='description'
+            content='Compare your favorite beatmaps and find new ones!'
+          />
           <Suspense>
             <SessionProvider>
               <Layout children={props.children} />

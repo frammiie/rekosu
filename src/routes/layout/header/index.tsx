@@ -1,7 +1,7 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Switch, Match } from 'solid-js';
-import { HitCircle } from '~/features/beatmaps/difficulties';
+import { ModeIcon } from '~/features/beatmaps/mode-icon';
 
 export function Header() {
   const auth = useAuth();
@@ -38,12 +38,12 @@ export function Header() {
           </Match>
           <Match when={auth.status() === 'unauthenticated'}>
             <button
-              class='font-medium p-[10px] px-[15px] rounded-full bg-pink-400 bg-opacity-25 flex gap-[5px] items-center'
+              class='font-medium p-[10px] px-[15px] rounded-full bg-pink-400 bg-opacity-25 flex gap-[10px] items-center'
               onClick={() => auth.signIn('osu')}
               data-umami-event='sign-in-click'
             >
               Sign in with osu!
-              <HitCircle />
+              <ModeIcon mode='osu' class='size-5 fill-white' />
             </button>
           </Match>
         </Switch>

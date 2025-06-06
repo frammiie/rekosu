@@ -49,6 +49,10 @@ export function Footer() {
             mediakit
           </Link>
         </li>
+        <li>
+          <Link href='https://github.com/Osekai/osekai'>Osekai</Link> for
+          gamemode icons
+        </li>
       </ul>
       <div>And many more awesome folks!</div>
     </footer>

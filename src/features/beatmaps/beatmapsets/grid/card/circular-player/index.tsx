@@ -3,15 +3,18 @@ import { useAudio } from '~/features/beatmaps/context/audio-player/use-audio';
 
 export type CircularPlayerProps = {
   url: string;
+  id: string;
 };
 
 export function CircularPlayer(props: CircularPlayerProps) {
-  const url = () => `https:${props.url}`;
-  const { playing, progress, handleToggle } = useAudio(url);
+  const { playing, progress, handleToggle } = useAudio(
+    () => `https:${props.url}`,
+    () => props.id
+  );
   const radius = 11;
 
   return (
-    <div class='size-full bg-[#0005] rounded-[10px] items-center justify-center hidden group-hover:flex'>
+    <div class='size-full bg-[#0005] rounded-[10px] flex items-center justify-center'>
       <div class='size-[50px] relative -ml-[10px] flex items-center justify-center'>
         <svg width='50' height='50' viewBox='0 0 25 25' class='size-[50px]'>
           <circle

@@ -1,50 +1,66 @@
 import { useLocation } from '@solidjs/router';
-import type { ParentProps } from 'solid-js';
-import { createContext, createEffect } from 'solid-js';
+import type { Accessor, ParentProps } from 'solid-js';
+import { createContext, createEffect, createSignal } from 'solid-js';
 
 export type AudioPlayerContext = {
-  play: (
-    id: string,
-    url: string,
-    onProgress: (progress: number) => void,
-    onEnd: () => void
-  ) => Promise<void>;
+  play: (id: string, url: string) => Promise<void>;
   pause: () => Promise<void>;
+  playing: Accessor<boolean>;
+  progress: Accessor<number>;
+  activeId: Accessor<string | null>;
 };
 
 export const AudioPlayerContext = createContext<AudioPlayerContext>();
 
 export function AudioPlayerProvider(props: ParentProps) {
-  const location = useLocation();
-
   let audioRef!: HTMLAudioElement;
-
-  let active: {
-    id: string;
-    onProgress: (progress: number) => void;
-    onEnd: () => void;
-  } | null = null;
-
-  function handleEnded() {
-    if (!active) return;
-
-    active.onProgress(0);
-    active.onEnd();
-    audioRef.pause();
-    active = null;
-  }
+  const [playing, setPlaying] = createSignal(false);
+  const [progress, setProgress] = createSignal(0);
+  const [activeId, setActiveId] = createSignal<string | null>(null);
 
   function handleTimeUpdate(event: Event) {
-    if (!active) return;
+    if (!activeId()) return;
 
     if (event.currentTarget instanceof HTMLAudioElement) {
       if (isNaN(event.currentTarget.duration)) return;
 
-      active.onProgress(
+      setProgress(
         event.currentTarget.currentTime / event.currentTarget.duration
       );
     }
   }
+
+  async function play(id: string, url: string) {
+    audioRef.volume = 0.5;
+
+    // If from same source and has same url, resume playback
+    if (activeId() === id && audioRef.src === url) {
+      audioRef.play();
+      return;
+    }
+
+    // If any previous, end
+    if (activeId()) handleEnded();
+
+    audioRef.setAttribute('src', url);
+    await audioRef.play();
+
+    setActiveId(id);
+  }
+
+  async function pause() {
+    audioRef.pause();
+  }
+
+  function handleEnded() {
+    audioRef.pause();
+    setProgress(0);
+    setPlaying(false);
+    setActiveId(null);
+  }
+
+  // Stop playing on navigation
+  const location = useLocation();
 
   createEffect(() => {
     location.pathname;
@@ -52,40 +68,15 @@ export function AudioPlayerProvider(props: ParentProps) {
     handleEnded();
   });
 
-  async function play(
-    id: string,
-    url: string,
-    onProgress: (progress: number) => void,
-    onEnd: () => void
-  ) {
-    // If from same source and has same url, resume playback
-    if (active?.id === id && audioRef.src === url) {
-      audioRef.play();
-      return;
-    }
-
-    // If any previous, end
-    if (active) handleEnded();
-
-    audioRef.setAttribute('src', url);
-    active = {
-      id,
-      onProgress,
-      onEnd,
-    };
-
-    await audioRef.play();
-  }
-
-  async function pause() {
-    audioRef.pause();
-  }
-
   return (
-    <AudioPlayerContext.Provider value={{ play, pause }}>
+    <AudioPlayerContext.Provider
+      value={{ play, pause, playing, progress: progress, activeId }}
+    >
       {props.children}
       <audio
         ref={audioRef}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
       />

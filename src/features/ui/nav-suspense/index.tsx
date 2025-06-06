@@ -39,7 +39,7 @@ export function NavSuspense(props: RouteSuspenseProps) {
         {props.children}
         <Show when={showFallback()}>
           <div
-            class='absolute inset-0 bg-[#0006] z-50 animate-fade-in'
+            class='absolute inset-0 bg-[#0006] z-50 motion-safe:animate-fade-in'
             children={props.fallback}
           />
         </Show>

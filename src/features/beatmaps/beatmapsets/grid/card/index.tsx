@@ -1,5 +1,5 @@
 import { A } from '@solidjs/router';
-import { createMemo, For, Show } from 'solid-js';
+import { createMemo, createSignal, createUniqueId, For, Show } from 'solid-js';
 import { similarityColor } from '../../../difficulties/colors';
 import { Progress } from '~/features/ui/progress';
 import { HitCircle, ModeCircle } from '../../../difficulties';
@@ -13,6 +13,9 @@ export type CardProps = {
 };
 
 export function Card(props: CardProps) {
+  let cardRef: HTMLDivElement = null!;
+  const id = createUniqueId();
+
   const beatmaps = createMemo(() =>
     props.beatmapset.beatmaps.sort(
       (a, b) =>
@@ -21,10 +24,23 @@ export function Card(props: CardProps) {
     )
   );
 
+  const [expanded, setExpanded] = createSignal(false);
+
   return (
     <div
-      class='relative group'
+      ref={e => (cardRef = e)}
+      class='relative'
+      tabindex={0}
       style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}
+      onMouseEnter={() => setExpanded(true)}
+      onMouseLeave={() => setExpanded(false)}
+      onFocusIn={() => setExpanded(true)}
+      onFocusOut={e => {
+        if (e.relatedTarget && cardRef.contains(e.relatedTarget as HTMLElement))
+          return;
+
+        setExpanded(false);
+      }}
     >
       <div class='h-[100px] bg-[#fff1] flex gap-[5px] rounded-[10px] overflow-hidden'>
         <div
@@ -34,7 +50,11 @@ export function Card(props: CardProps) {
             'background-position-x': '-10px',
           }}
         >
-          <CircularPlayer url={props.beatmapset.preview_url} />
+          <div class='motion-safe:animate-fade-in size-full'>
+            <Show when={expanded()}>
+              <CircularPlayer url={props.beatmapset.preview_url} id={id} />
+            </Show>
+          </div>
         </div>
         <div
           class='bg-cover bg-center w-full rounded-[10px] -ml-[10px] min-w-0'
@@ -58,48 +78,50 @@ export function Card(props: CardProps) {
           </div>
         </div>
       </div>
-      <div class='hidden group-hover:block group-hover:motion-safe:animate-fade-in absolute w-full top-auto bg-[#26292b] border-2 border-t-0 rounded-b-[10px] border-[#fff6] z-10 p-[5px] max-h-[200px] overflow-y-auto'>
-        <div class='flex flex-col gap-[2.5px]'>
-          <For each={beatmaps()}>
-            {(beatmap, index) => (
-              <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-2 py-0.5'>
-                <A
-                  href={`/beatmaps/${beatmap.id}`}
-                  class='flex gap-[5px] items-center w-full'
-                >
-                  <Show
-                    when={beatmap.mode === 'osu'}
-                    fallback={
-                      <ModeCircle
-                        mode={beatmap.mode}
-                        class='size-4 text-[0.6rem] flex-shrink-0'
-                      />
-                    }
+      <Show when={expanded()}>
+        <div class='motion-safe:animate-fade-in absolute w-full top-auto bg-[#26292b] border-2 border-t-0 rounded-b-[10px] border-[#fff6] z-10 p-[5px] max-h-[200px] overflow-y-auto'>
+          <div class='flex flex-col gap-[2.5px]'>
+            <For each={beatmaps()}>
+              {(beatmap, index) => (
+                <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-2 py-0.5'>
+                  <A
+                    href={`/beatmaps/${beatmap.id}`}
+                    class='flex gap-[5px] items-center w-full'
                   >
-                    <HitCircle class='size-6 -m-1 flex-shrink-0' />
-                  </Show>
-                  <DifficultyChip
-                    difficultyRating={beatmap.difficulty_rating}
-                  />
-                  <span class='truncate'>{beatmap.version}</span>
-                  {beatmap.similarity != null && (
-                    <div class='flex gap-[5px] ml-auto items-center'>
-                      <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
-                      <Progress
-                        value={beatmap.similarity}
-                        color={similarityColor(beatmap.similarity)}
-                        class='md:w-[150px] w-[50px] flex-shrink-0'
-                        delay={index() * 50}
-                      />
-                    </div>
-                  )}
-                </A>
-              </div>
-            )}
-          </For>
+                    <Show
+                      when={beatmap.mode === 'osu'}
+                      fallback={
+                        <ModeCircle
+                          mode={beatmap.mode}
+                          class='size-4 text-[0.6rem] flex-shrink-0'
+                        />
+                      }
+                    >
+                      <HitCircle class='size-6 -m-1 flex-shrink-0' />
+                    </Show>
+                    <DifficultyChip
+                      difficultyRating={beatmap.difficulty_rating}
+                    />
+                    <span class='truncate'>{beatmap.version}</span>
+                    {beatmap.similarity != null && (
+                      <div class='flex gap-[5px] ml-auto items-center'>
+                        <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
+                        <Progress
+                          value={beatmap.similarity}
+                          color={similarityColor(beatmap.similarity)}
+                          class='md:w-[150px] w-[50px] flex-shrink-0'
+                          delay={index() * 50}
+                        />
+                      </div>
+                    )}
+                  </A>
+                </div>
+              )}
+            </For>
+          </div>
         </div>
-      </div>
-      <div class='hidden group-hover:block absolute inset-0 border-2 border-b-0 rounded-t-[10px] border-[#fff6] pointer-events-none' />
+        <div class='motion-safe:animate-fade-in absolute inset-0 border-2 border-b-0 rounded-t-[10px] border-[#fff6] pointer-events-none' />
+      </Show>
     </div>
   );
 }

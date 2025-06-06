@@ -1,3 +1,4 @@
+import { Title } from '@solidjs/meta';
 import { createAsync } from '@solidjs/router';
 import type { Accessor } from 'solid-js';
 import { Grid } from '~/features/beatmaps/beatmapsets/grid';
@@ -13,6 +14,7 @@ export default function Home() {
 
   return (
     <main class='bg-[#fff1] min-h-[500px] flex flex-col'>
+      <Title>Rekosu | Home</Title>
       <SectionHeader>Home</SectionHeader>
       <SectionHeader variant='secondary'>Recent Beatmaps</SectionHeader>
       <AudioPlayerProvider>

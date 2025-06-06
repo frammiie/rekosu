@@ -6,9 +6,10 @@ import { Grid } from '~/features/beatmaps/beatmapsets/grid';
 import { Header } from '~/features/beatmaps/header';
 import { AudioPlayerProvider } from '~/features/beatmaps/context/audio-player';
 import { SectionHeader } from '~/features/ui/section-header';
-import { createEffect, type Accessor } from 'solid-js';
+import { createEffect, Show, type Accessor } from 'solid-js';
 import { isServer } from 'solid-js/web';
 import { trackRecentBeatmapset } from '~/server';
+import { Title } from '@solidjs/meta';
 
 export const route = {
   preload: ({ params }) => {
@@ -38,6 +39,9 @@ export default function Beatmap() {
 
   return (
     <main>
+      <Show when={beatmapDetails()?.beatmapset}>
+        <Title>{`Rekosu | ${beatmapDetails().beatmapset.title}`}</Title>
+      </Show>
       <SectionHeader>Beatmap info</SectionHeader>
       <SectionHeader variant='secondary'>Info</SectionHeader>
       <AudioPlayerProvider>

@@ -27,14 +27,16 @@ async function get<TResult>(key: unknown[]): Promise<TResult | null> {
 async function set<TValue>(
   key: unknown[],
   value: TValue,
-  options?: { expiration?: number }
+  options?: { expiration?: number | null }
 ) {
   const compositeKey = joinCompositeKey(key);
 
   const pipeline = redis.pipeline();
 
   pipeline.set(joinCompositeKey(key), JSON.stringify(value));
-  pipeline.expire(compositeKey, options?.expiration ?? 24 * 60 * 60);
+  if (options?.expiration !== null) {
+    pipeline.expire(compositeKey, options?.expiration ?? 24 * 60 * 60);
+  }
 
   await pipeline.exec();
 }

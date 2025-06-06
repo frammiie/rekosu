@@ -19,5 +19,7 @@ export async function trackRecentBeatmapset(beatmapsetId: number) {
   recentBeatmapsets.unshift(beatmapset);
   recentBeatmapsets = recentBeatmapsets.slice(0, 16);
 
-  await cache.set(['recent_beatmapsets'], recentBeatmapsets);
+  await cache.set(['recent_beatmapsets'], recentBeatmapsets, {
+    expiration: null,
+  });
 }

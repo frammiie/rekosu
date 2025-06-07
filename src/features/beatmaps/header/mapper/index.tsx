@@ -1,10 +1,10 @@
 import { A } from '@solidjs/router';
-import type { Beatmapset } from 'osu-api-v2-js';
 import { Show } from 'solid-js';
+import type { RekosuBeatmapset } from '~/server/data';
 import { formatDate } from '~/utils/formatting';
 
 export type MapperProps = {
-  beatmapset: Beatmapset.Extended.Plus;
+  beatmapset: RekosuBeatmapset;
 };
 
 export function Mapper(props: MapperProps) {

@@ -5,11 +5,11 @@ import { Progress } from '~/features/ui/progress';
 import { CircularPlayer } from './circular-player';
 import { DifficultyChip } from './difficulty-chip';
 import { DifficultyBars } from '../../difficulty-bars';
-import type { GridProps } from '..';
 import { ModeIcon } from '~/features/beatmaps/mode-icon';
+import type { RekosuBeatmapset } from '~/server/data';
 
 export type CardProps = {
-  beatmapset: GridProps['beatmapsets'][0];
+  beatmapset: RekosuBeatmapset;
 };
 
 export function Card(props: CardProps) {
@@ -31,7 +31,6 @@ export function Card(props: CardProps) {
       ref={e => (cardRef = e)}
       class='relative'
       tabindex={0}
-      style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
       onFocusIn={() => setExpanded(true)}
@@ -42,7 +41,10 @@ export function Card(props: CardProps) {
         setExpanded(false);
       }}
     >
-      <div class='h-[100px] bg-[#fff1] flex gap-[5px] rounded-[10px] overflow-hidden'>
+      <div
+        class='h-[100px] bg-[#fff1] flex gap-[5px] rounded-[10px] overflow-hidden'
+        style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}
+      >
         <div
           class='min-w-[100px] bg-cover rounded-[10px] flex items-center justify-center'
           style={{
@@ -96,17 +98,25 @@ export function Card(props: CardProps) {
                       difficultyRating={beatmap.difficulty_rating}
                     />
                     <span class='truncate'>{beatmap.version}</span>
-                    {beatmap.similarity != null && (
-                      <div class='flex gap-[5px] ml-auto items-center'>
-                        <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
-                        <Progress
-                          value={beatmap.similarity}
-                          color={similarityColor(beatmap.similarity)}
-                          class='md:w-[150px] w-[50px] flex-shrink-0'
-                          delay={index() * 50}
-                        />
-                      </div>
-                    )}
+                    <div class='ml-auto flex gap-[5px] items-center'>
+                      {beatmap.similarity != null && (
+                        <div class='flex gap-[5px] ml-auto items-center'>
+                          <span>{(beatmap.similarity * 100).toFixed(1)}%</span>
+                          <Progress
+                            value={beatmap.similarity}
+                            color={similarityColor(beatmap.similarity)}
+                            class='md:w-[100px] w-[75px] flex-shrink-0'
+                            delay={index() * 50}
+                          />
+                        </div>
+                      )}
+                      <span class='ml-auto min-w-12 text-right text-[#fff8]'>
+                        {beatmap.maxPp != null
+                          ? beatmap.maxPp?.toFixed(0)
+                          : '? '}
+                        pp
+                      </span>
+                    </div>
                   </A>
                 </div>
               )}

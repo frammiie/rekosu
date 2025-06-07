@@ -49,9 +49,38 @@
           "type": "vector(768)",
           "primaryKey": false,
           "notNull": false
+        },
+        "beatmapset_id": {
+          "name": "beatmapset_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "max_pp": {
+          "name": "max_pp",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "beatmaps_beatmapset_id": {
+          "name": "beatmaps_beatmapset_id",
+          "columns": [
+            {
+              "expression": "beatmapset_id",
+              "asc": true,
+              "nulls": "last",
+              "opclass": "int8_ops",
+              "isExpression": false
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "hash",
+          "with": {}
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},

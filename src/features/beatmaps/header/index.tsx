@@ -8,12 +8,12 @@ import { NavSuspense } from '~/features/ui/nav-suspense';
 import { Stats } from './stats';
 import { Metadata } from './metadata';
 import type { ErrorResponse } from '~/utils/errors';
-import type { BeatmapDetails } from '~/server/queries';
+import type { BeatmapDetailsQuery } from '~/server/queries';
 import { Mapper } from './mapper';
 import { Controls } from './controls';
 
 export type HeaderProps = {
-  details: BeatmapDetails;
+  details: BeatmapDetailsQuery;
 };
 
 export function Header(props: HeaderProps) {
@@ -40,22 +40,9 @@ export function Header(props: HeaderProps) {
               class='flex flex-col'
               style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}
             >
-              <Difficulties
-                selected={{
-                  beatmapId: beatmap().id,
-                  version: beatmap().version,
-                  difficultyRating: beatmap().difficulty_rating,
-                  mode: beatmap().mode,
-                }}
-                difficulties={beatmapset().beatmaps.map(beatmap => ({
-                  beatmapId: beatmap.id,
-                  version: beatmap.version,
-                  difficultyRating: beatmap.difficulty_rating,
-                  mode: beatmap.mode,
-                }))}
-              />
+              <Difficulties beatmapset={beatmapset()} selected={beatmap()} />
 
-              <div class='mt-[50px]'>
+              <div class='mt-auto'>
                 <h1 class='text-3xl font-medium'>{beatmapset().title}</h1>
                 <h2 class='text-xl'>{beatmapset().artist}</h2>
               </div>

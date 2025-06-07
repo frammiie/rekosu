@@ -15,14 +15,14 @@ export function DifficultyChip(props: DifficultyChipProps) {
         'text-black': props.difficultyRating < 6.5,
         'text-yellow-400': props.difficultyRating >= 6.5,
       }}
-      class='text-xs rounded-full inline-flex items-center gap-[2.5px] px-[5px] w-[50px] font-medium'
+      class='text-xs rounded-full inline-flex items-center gap-[2.5px] px-[5px] min-w-[50px] font-medium'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='24'
         height='24'
         viewBox='0 0 24 24'
-        class='size-3'
+        class='size-3 flex-shrink-0'
       >
         <path
           fill='currentColor'

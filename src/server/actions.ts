@@ -1,17 +1,17 @@
 'use server';
 
-import type { Beatmapset } from 'osu-api-v2-js';
 import { cache } from './cache';
+import type { RekosuBeatmapset } from './data';
 
 export async function trackRecentBeatmapset(beatmapsetId: number) {
-  const beatmapset = await cache.get<Beatmapset.Extended.Plus>([
+  const beatmapset = await cache.get<RekosuBeatmapset>([
     'beatmapsets',
     beatmapsetId,
   ]);
   if (!beatmapset) return;
 
   let recentBeatmapsets =
-    (await cache.get<Beatmapset.Extended.Plus[]>(['recent_beatmapsets'])) ?? [];
+    (await cache.get<RekosuBeatmapset[]>(['recent_beatmapsets'])) ?? [];
 
   recentBeatmapsets = recentBeatmapsets.filter(
     rbms => rbms.id !== beatmapset.id

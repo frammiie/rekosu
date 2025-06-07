@@ -1,10 +1,10 @@
-import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
 import type { ProgressProps } from '~/features/ui/progress';
 import { Progress } from '~/features/ui/progress';
+import type { RekosuBeatmap, RekosuBeatmapset } from '~/server/data';
 
 export type MetadataProps = {
-  beatmap: Beatmap.Extended;
-  beatmapset: Beatmapset & { rating: number };
+  beatmap: RekosuBeatmap;
+  beatmapset: RekosuBeatmapset;
 };
 
 export function Metadata(props: MetadataProps) {

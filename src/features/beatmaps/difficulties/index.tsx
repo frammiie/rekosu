@@ -1,52 +1,42 @@
-import { createEffect, createSignal, For, untrack } from 'solid-js';
+import { createSignal, For, Show } from 'solid-js';
 import { difficultyColor } from './colors';
 import { A } from '@solidjs/router';
-import type { Beatmap } from 'osu-api-v2-js';
 import { ModeIcon } from '../mode-icon';
-
-type Difficulty = {
-  beatmapId: number;
-  version: string;
-  difficultyRating: number;
-  mode: Beatmap['mode'];
-};
+import type { RekosuBeatmap, RekosuBeatmapset } from '~/server/data';
 
 export type DifficultiesProps = {
-  selected: Difficulty;
-  difficulties: Difficulty[];
+  beatmapset: RekosuBeatmapset;
+  selected: RekosuBeatmap;
 };
 
 export function Difficulties(props: DifficultiesProps) {
-  // eslint-disable-next-line solid/reactivity
-  const [active, setActive] = createSignal<Difficulty>(props.selected);
+  const difficulties = () => props.beatmapset.beatmaps;
 
-  createEffect(() => {
-    if (untrack(active) == props.selected) return;
-
-    setActive(props.selected);
-  });
+  const [active, setActive] =
+    // eslint-disable-next-line solid/reactivity
+    createSignal<RekosuBeatmap>(props.selected);
 
   return (
     <div
       class='flex flex-col gap-[10px] group'
       style={{ 'text-shadow': 'none' }}
+      onMouseLeave={() => setActive(props.selected)}
     >
-      <ol
-        class='bg-[#0006] flex w-fit items-center rounded-[10px] backdrop-blur-sm flex-wrap'
-        onMouseLeave={() => setActive(props.selected)}
-      >
+      <ol class='bg-[#0006] flex w-fit items-center rounded-[10px] backdrop-blur-sm flex-wrap'>
         <For
-          each={props.difficulties.sort(
-            (a, b) => a.difficultyRating - b.difficultyRating
+          each={difficulties().sort(
+            (a, b) => a.difficulty_rating - b.difficulty_rating
           )}
         >
           {difficulty => (
             <li>
               <A
-                href={`/beatmaps/${difficulty.beatmapId}`}
+                href={`/beatmaps/${difficulty.id}`}
                 onMouseOver={() => setActive(difficulty)}
                 data-umami-event='difficulty-change-click'
-                data-umami-event-difficulty-rating={difficulty.difficultyRating}
+                data-umami-event-difficulty-rating={
+                  difficulty.difficulty_rating
+                }
               >
                 <div
                   class='size-[38px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'
@@ -59,7 +49,7 @@ export function Difficulties(props: DifficultiesProps) {
                   <ModeIcon
                     mode={difficulty.mode}
                     style={{
-                      fill: difficultyColor(difficulty.difficultyRating),
+                      fill: difficultyColor(difficulty.difficulty_rating),
                     }}
                     class='size-6'
                   />
@@ -70,10 +60,38 @@ export function Difficulties(props: DifficultiesProps) {
         </For>
       </ol>
       <div style={{ 'text-shadow': '0 1px 3px rgba(0,0,0,.75)' }}>
-        <span class='font-semibold'>{active().version} </span>
-        <span class='hidden group-hover:inline-block text-sm text-yellow-400'>
-          Star rating: {active().difficultyRating}
-        </span>
+        <div>
+          <span class='font-semibold'>{active().version} </span>
+          <span class='hidden group-hover:inline-block text-sm text-yellow-400'>
+            Star rating: {active().difficulty_rating}
+          </span>
+        </div>
+        <div class='text-sm'>
+          <span class='font-semibold'>
+            {active().maxPp != null ? active().maxPp?.toFixed(0) : '? '}pp
+          </span>
+          <Show when={active().owners[0].id !== props.beatmapset.user.id}>
+            <span class='text-xs'>
+              {' | Mapped by '}
+              <For each={active().owners}>
+                {(owner, index) => (
+                  <>
+                    <A
+                      href={`https://osu.ppy.sh/users/${owner.id}`}
+                      class='font-semibold'
+                      target='_blank'
+                    >
+                      {owner.username}
+                    </A>{' '}
+                    <Show when={index() != active().owners.length - 1}>
+                      and{' '}
+                    </Show>
+                  </>
+                )}
+              </For>
+            </span>
+          </Show>
+        </div>
       </div>
     </div>
   );

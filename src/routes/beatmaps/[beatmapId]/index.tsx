@@ -1,6 +1,9 @@
 import type { RouteDefinition } from '@solidjs/router';
 import { createAsync, useAction, useParams } from '@solidjs/router';
-import type { BeatmapDetails, SimilarBeatmaps } from '~/server/queries';
+import type {
+  BeatmapDetailsQuery,
+  SimilarBeatmapsQuery,
+} from '~/server/queries';
 import { getBeatmap, getSimilarBeatmapsets } from '~/server/queries';
 import { Grid } from '~/features/beatmaps/beatmapsets/grid';
 import { Header } from '~/features/beatmaps/header';
@@ -23,11 +26,11 @@ export default function Beatmap() {
 
   const beatmapDetails = createAsync(() =>
     getBeatmap(Number(params.beatmapId))
-  ) as Accessor<BeatmapDetails>;
+  ) as Accessor<BeatmapDetailsQuery>;
 
   const similarBeatmaps = createAsync(() =>
     getSimilarBeatmapsets(Number(params.beatmapId))
-  ) as Accessor<SimilarBeatmaps>;
+  ) as Accessor<SimilarBeatmapsQuery>;
 
   const trackBeatmapset = useAction(trackRecentBeatmapset);
 

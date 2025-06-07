@@ -4,12 +4,10 @@ import { Throbber } from '~/features/ui/throbber';
 import { Error } from '~/features/ui/error';
 import { NavSuspense } from '~/features/ui/nav-suspense';
 import type { ErrorResponse } from '~/utils/errors';
-import type { Beatmap, Beatmapset } from 'osu-api-v2-js';
+import type { RekosuBeatmapset } from '~/server/data';
 
 export type GridProps = {
-  beatmapsets: (Beatmapset.Extended & {
-    beatmaps: (Beatmap & { similarity?: number })[];
-  })[];
+  beatmapsets: RekosuBeatmapset[];
 };
 
 export type SimilarProps = {

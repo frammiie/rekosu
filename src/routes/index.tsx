@@ -5,12 +5,15 @@ import { Grid } from '~/features/beatmaps/beatmapsets/grid';
 import { AudioPlayerProvider } from '~/features/beatmaps/context/audio-player';
 import { Search } from '~/features/beatmaps/search';
 import { SectionHeader } from '~/features/ui/section-header';
-import { getRecentBeatmapsets, type RecentBeatmapsets } from '~/server/queries';
+import {
+  getRecentBeatmapsets,
+  type RecentBeatmapsetsQuery,
+} from '~/server/queries';
 
 export default function Home() {
   const recentBeatmapsets = createAsync(() =>
     getRecentBeatmapsets()
-  ) as Accessor<RecentBeatmapsets>;
+  ) as Accessor<RecentBeatmapsetsQuery>;
 
   return (
     <main class='bg-[#fff1] min-h-[500px] flex flex-col'>

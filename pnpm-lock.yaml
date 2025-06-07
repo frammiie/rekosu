@@ -16,7 +16,7 @@ importers:
         version: 1.44.1
       '@solid-mediakit/auth':
         specifier: ^3.1.3
-        version: 3.1.3(@auth/core@0.39.1)(@solidjs/meta@0.29.4(solid-js@1.9.7))(@solidjs/router@0.15.3(solid-js@1.9.7))(@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0))(rollup@4.40.2)(solid-js@1.9.7)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
+        version: 3.1.3(@auth/core@0.39.1)(@solidjs/meta@0.29.4(solid-js@1.9.7))(@solidjs/router@0.15.3(solid-js@1.9.7))(@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0))(rollup@4.40.2)(solid-js@1.9.7)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
       '@solidjs/meta':
         specifier: ^0.29.4
         version: 0.29.4(solid-js@1.9.7)
@@ -25,7 +25,7 @@ importers:
         version: 0.15.3(solid-js@1.9.7)
       '@solidjs/start':
         specifier: ^1.1.0
-        version: 1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)
+        version: 1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)
       '@types/chroma-js':
         specifier: ^3.1.1
         version: 3.1.1
@@ -45,8 +45,8 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       drizzle-orm:
-        specifier: ^0.43.1
-        version: 0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)
+        specifier: ^0.44.2
+        version: 0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)
       format-duration-time:
         specifier: ^1.5.4
         version: 1.5.4
@@ -54,8 +54,8 @@ importers:
         specifier: ^5.6.1
         version: 5.6.1
       osu-api-v2-js:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.0.1
+        version: 2.0.1
       osu-web.js:
         specifier: ^2.6.0
         version: 2.6.0
@@ -66,8 +66,8 @@ importers:
         specifier: ^8.4.40
         version: 8.5.3
       postgres:
-        specifier: 3.4.5
-        version: 3.4.5
+        specifier: 3.4.7
+        version: 3.4.7
       solid-js:
         specifier: ^1.9.7
         version: 1.9.7
@@ -76,7 +76,7 @@ importers:
         version: 3.4.17
       vinxi:
         specifier: ^0.5.6
-        version: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
+        version: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
       zod:
         specifier: ^3.25.7
         version: 3.25.7
@@ -2066,8 +2066,8 @@ packages:
     resolution: {integrity: sha512-PUjYKWtzOzPtdtQlTHQG3qfv4Y0XT8+Eas6UbxCmxTj7qgMf+39dDujf1BP1I+qqZtw9uzwTh8jYtkMuCq+B0Q==}
     hasBin: true
 
-  drizzle-orm@0.43.1:
-    resolution: {integrity: sha512-dUcDaZtE/zN4RV/xqGrVSMpnEczxd5cIaoDeor7Zst9wOe/HzC/7eAaulywWGYXdDEc9oBPMjayVEDg0ziTLJA==}
+  drizzle-orm@0.44.2:
+    resolution: {integrity: sha512-zGAqBzWWkVSFjZpwPOrmCrgO++1kZ5H/rZ4qTGeGOe18iXGVJWf3WPfHOVwFIbmi8kHjfJstC6rJomzGx8g/dQ==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -2083,6 +2083,7 @@ packages:
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
@@ -2125,6 +2126,8 @@ packages:
       '@types/pg':
         optional: true
       '@types/sql.js':
+        optional: true
+      '@upstash/redis':
         optional: true
       '@vercel/postgres':
         optional: true
@@ -3323,8 +3326,8 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
-  osu-api-v2-js@2.0.0:
-    resolution: {integrity: sha512-/83tmzCDXb1yXdYqS3z753ExSMtEem8wMPZp4csq/2VpPNO6ZyBuxUI6K37dO7jSIx/TMRflCGdQTgWBEaHCdQ==}
+  osu-api-v2-js@2.0.1:
+    resolution: {integrity: sha512-T0trhkzQ/iZv0gvfGya3gTUqocKims4p3vZKFyCsPt3175llGfJ2Puj5qBvj3xeJ+1tCT163SuT9GIaf/cc5Og==}
     engines: {node: '>=20.0.0'}
 
   osu-web.js@2.6.0:
@@ -3587,8 +3590,8 @@ packages:
   postgres-range@1.1.4:
     resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
-  postgres@3.4.5:
-    resolution: {integrity: sha512-cDWgoah1Gez9rN3H4165peY9qfpEo+SA61oQv65O3cRUE1pOEoJWwddwcqKE8XZYjbblOJlYDlLV4h67HrEVDg==}
+  postgres@3.4.7:
+    resolution: {integrity: sha512-Jtc2612XINuBjIl/QTWsV5UvE8UHuNblcO3vVADSrKsrc6RqGX6lOW1cEo3CM2v0XG4Nat8nI+YM7/f26VxXLw==}
     engines: {node: '>=12'}
 
   preact-render-to-string@6.5.11:
@@ -5487,17 +5490,17 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@solid-mediakit/auth@3.1.3(@auth/core@0.39.1)(@solidjs/meta@0.29.4(solid-js@1.9.7))(@solidjs/router@0.15.3(solid-js@1.9.7))(@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0))(rollup@4.40.2)(solid-js@1.9.7)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
+  '@solid-mediakit/auth@3.1.3(@auth/core@0.39.1)(@solidjs/meta@0.29.4(solid-js@1.9.7))(@solidjs/router@0.15.3(solid-js@1.9.7))(@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0))(rollup@4.40.2)(solid-js@1.9.7)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
     dependencies:
       '@auth/core': 0.39.1
       '@solid-mediakit/shared': 0.0.6(rollup@4.40.2)
       '@solidjs/meta': 0.29.4(solid-js@1.9.7)
       '@solidjs/router': 0.15.3(solid-js@1.9.7)
-      '@solidjs/start': 1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)
+      '@solidjs/start': 1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)
       cookie: 0.6.0
       set-cookie-parser: 2.7.1
       solid-js: 1.9.7
-      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
+      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -5518,11 +5521,11 @@ snapshots:
     dependencies:
       solid-js: 1.9.7
 
-  '@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)':
+  '@solidjs/start@1.1.4(@types/node@20.17.47)(jiti@2.4.2)(solid-js@1.9.7)(terser@5.39.2)(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))(yaml@2.8.0)':
     dependencies:
       '@tanstack/server-functions-plugin': 1.119.2(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
-      '@vinxi/plugin-directives': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
-      '@vinxi/server-components': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
+      '@vinxi/plugin-directives': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
+      '@vinxi/server-components': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
       defu: 6.1.4
       error-stack-parser: 2.1.4
       html-to-image: 1.11.13
@@ -5533,7 +5536,7 @@ snapshots:
       source-map-js: 1.2.1
       terracotta: 1.0.6(solid-js@1.9.7)
       tinyglobby: 0.2.13
-      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
+      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
       vite-plugin-solid: 2.11.6(solid-js@1.9.7)(vite@6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
     transitivePeerDependencies:
       - '@testing-library/jest-dom'
@@ -5922,7 +5925,7 @@ snapshots:
       untun: 0.1.3
       uqr: 0.1.2
 
-  '@vinxi/plugin-directives@0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
+  '@vinxi/plugin-directives@0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
     dependencies:
       '@babel/parser': 7.27.2
       acorn: 8.14.1
@@ -5933,18 +5936,18 @@ snapshots:
       magicast: 0.2.11
       recast: 0.23.11
       tslib: 2.8.1
-      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
+      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
 
-  '@vinxi/server-components@0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
+  '@vinxi/server-components@0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))':
     dependencies:
-      '@vinxi/plugin-directives': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
+      '@vinxi/plugin-directives': 0.5.1(vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0))
       acorn: 8.14.1
       acorn-loose: 8.5.0
       acorn-typescript: 1.4.13(acorn@8.14.1)
       astring: 1.9.0
       magicast: 0.2.11
       recast: 0.23.11
-      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
+      vinxi: 0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
 
   '@whatwg-node/disposablestack@0.0.6':
     dependencies:
@@ -6462,9 +6465,9 @@ snapshots:
       '@deno/shim-deno': 0.19.2
       undici-types: 5.28.4
 
-  db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)):
+  db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)):
     optionalDependencies:
-      drizzle-orm: 0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)
+      drizzle-orm: 0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)
 
   debug@2.6.9:
     dependencies:
@@ -6580,11 +6583,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5):
+  drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7):
     optionalDependencies:
       '@types/pg': 8.15.2
       pg: 8.10.0
-      postgres: 3.4.5
+      postgres: 3.4.7
 
   dunder-proto@1.0.1:
     dependencies:
@@ -7681,7 +7684,7 @@ snapshots:
       p-wait-for: 5.0.2
       qs: 6.14.0
 
-  nitropack@2.11.12(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)):
+  nitropack@2.11.12(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@netlify/functions': 3.1.8(rollup@4.40.2)
@@ -7703,7 +7706,7 @@ snapshots:
       cookie-es: 2.0.0
       croner: 9.0.0
       crossws: 0.3.5
-      db0: 0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))
+      db0: 0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))
       defu: 6.1.4
       destr: 2.0.5
       dot-prop: 9.0.0
@@ -7749,7 +7752,7 @@ snapshots:
       unenv: 2.0.0-rc.17
       unimport: 5.0.1
       unplugin-utils: 0.2.4
-      unstorage: 1.16.0(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(ioredis@5.6.1)
+      unstorage: 1.16.0(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(ioredis@5.6.1)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.7
@@ -7915,7 +7918,7 @@ snapshots:
       type-check: 0.4.0
       word-wrap: 1.2.5
 
-  osu-api-v2-js@2.0.0: {}
+  osu-api-v2-js@2.0.1: {}
 
   osu-web.js@2.6.0: {}
 
@@ -8134,7 +8137,7 @@ snapshots:
 
   postgres-range@1.1.4: {}
 
-  postgres@3.4.5: {}
+  postgres@3.4.7: {}
 
   preact-render-to-string@6.5.11(preact@10.24.3):
     dependencies:
@@ -8906,7 +8909,7 @@ snapshots:
       picomatch: 4.0.2
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.16.0(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(ioredis@5.6.1):
+  unstorage@1.16.0(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(ioredis@5.6.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -8917,7 +8920,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.6.1
     optionalDependencies:
-      db0: 0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))
+      db0: 0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))
       ioredis: 5.6.1
 
   untun@0.1.3:
@@ -8980,7 +8983,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0):
+  vinxi@0.5.6(@types/node@20.17.47)(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))(ioredis@5.6.1)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0):
     dependencies:
       '@babel/core': 7.27.1
       '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.27.1)
@@ -9002,7 +9005,7 @@ snapshots:
       hookable: 5.5.3
       http-proxy: 1.18.1
       micromatch: 4.0.8
-      nitropack: 2.11.12(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5))
+      nitropack: 2.11.12(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7))
       node-fetch-native: 1.6.6
       path-to-regexp: 6.3.0
       pathe: 1.1.2
@@ -9013,7 +9016,7 @@ snapshots:
       ufo: 1.6.1
       unctx: 2.4.1
       unenv: 1.10.0
-      unstorage: 1.16.0(db0@0.3.2(drizzle-orm@0.43.1(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.5)))(ioredis@5.6.1)
+      unstorage: 1.16.0(db0@0.3.2(drizzle-orm@0.44.2(@types/pg@8.15.2)(pg@8.10.0)(postgres@3.4.7)))(ioredis@5.6.1)
       vite: 6.3.5(@types/node@20.17.47)(jiti@2.4.2)(terser@5.39.2)(yaml@2.8.0)
       zod: 3.25.7
     transitivePeerDependencies:

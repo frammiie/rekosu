@@ -36,6 +36,8 @@ async function set<TValue>(
   pipeline.set(joinCompositeKey(key), JSON.stringify(value));
   if (options?.expiration !== null) {
     pipeline.expire(compositeKey, options?.expiration ?? 24 * 60 * 60);
+  } else {
+    pipeline.persist(compositeKey);
   }
 
   await pipeline.exec();

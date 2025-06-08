@@ -72,7 +72,7 @@ export function Difficulties(props: DifficultiesProps) {
           </span>
           <Show when={active().owners[0].id !== props.beatmapset.user.id}>
             <span class='text-xs'>
-              {' | Mapped by '}
+              {' | mapped by '}
               <For each={active().owners}>
                 {(owner, index) => (
                   <>

@@ -73,7 +73,14 @@ export function Card(props: CardProps) {
                 By {props.beatmapset.artist}
               </div>
               <div class='text-xs leading-5 truncate break-all'>
-                mapped by <b class='font-medium'>{props.beatmapset.creator}</b>
+                mapped by{' '}
+                <A
+                  href={`https://osu.ppy.sh/users/${props.beatmapset.user_id}`}
+                  target='_blank'
+                  class='font-medium'
+                >
+                  {props.beatmapset.creator}
+                </A>
               </div>
               <DifficultyBars beatmapset={props.beatmapset} />
             </div>

@@ -1,7 +1,7 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Switch, Match } from 'solid-js';
-import { ModeIcon } from '~/features/beatmaps/mode-icon';
+import { ModeIcon } from '~/features/recommendations/mode-icon';
 
 export function Header() {
   const auth = useAuth();

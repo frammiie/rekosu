@@ -1,4 +1,4 @@
-import { ModeIcon } from '~/features/beatmaps/mode-icon';
+import { ModeIcon } from '~/features/recommendations/mode-icon';
 
 export function Throbber() {
   return (

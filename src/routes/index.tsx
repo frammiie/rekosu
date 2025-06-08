@@ -1,9 +1,9 @@
 import { Title } from '@solidjs/meta';
 import { createAsync } from '@solidjs/router';
 import type { Accessor } from 'solid-js';
-import { Grid } from '~/features/beatmaps/beatmapsets/grid';
-import { AudioPlayerProvider } from '~/features/beatmaps/context/audio-player';
-import { Search } from '~/features/beatmaps/search';
+import { Grid } from '~/features/recommendations/beatmapsets/grid';
+import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
+import { Search } from '~/features/recommendations/search';
 import { SectionHeader } from '~/features/ui/section-header';
 import {
   getRecentBeatmapsets,

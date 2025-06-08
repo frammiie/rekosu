@@ -1,5 +1,5 @@
 import { Show } from 'solid-js';
-import { useAudio } from '~/features/beatmaps/context/audio-player/use-audio';
+import { useAudio } from '~/features/recommendations/context/audio-player/use-audio';
 
 export type CircularPlayerProps = {
   url: string;

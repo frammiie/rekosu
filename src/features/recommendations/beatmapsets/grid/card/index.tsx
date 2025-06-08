@@ -5,7 +5,7 @@ import { Progress } from '~/features/ui/progress';
 import { CircularPlayer } from './circular-player';
 import { DifficultyChip } from './difficulty-chip';
 import { DifficultyBars } from '../../difficulty-bars';
-import { ModeIcon } from '~/features/beatmaps/mode-icon';
+import { ModeIcon } from '~/features/recommendations/mode-icon';
 import type { RekosuBeatmapset } from '~/server/data';
 
 export type CardProps = {

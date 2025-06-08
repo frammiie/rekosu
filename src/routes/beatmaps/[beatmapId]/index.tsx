@@ -5,9 +5,9 @@ import type {
   SimilarBeatmapsQuery,
 } from '~/server/queries';
 import { getBeatmap, getSimilarBeatmapsets } from '~/server/queries';
-import { Grid } from '~/features/beatmaps/beatmapsets/grid';
-import { Header } from '~/features/beatmaps/header';
-import { AudioPlayerProvider } from '~/features/beatmaps/context/audio-player';
+import { Grid } from '~/features/recommendations/beatmapsets/grid';
+import { Header } from '~/features/recommendations/header';
+import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
 import { SectionHeader } from '~/features/ui/section-header';
 import { createEffect, Show, type Accessor } from 'solid-js';
 import { isServer } from 'solid-js/web';

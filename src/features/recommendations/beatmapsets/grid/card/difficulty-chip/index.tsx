@@ -1,4 +1,4 @@
-import { difficultyColor } from '~/features/beatmaps/difficulties/colors';
+import { difficultyColor } from '~/features/recommendations/difficulties/colors';
 
 export type DifficultyChipProps = {
   difficultyRating: number;

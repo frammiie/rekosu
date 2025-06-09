@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       animation: {
         'fade-in': 'fade-in 200ms ease-in-out',
+        'delayed-fade-in': 'fade-in 200ms ease-in-out 1s forwards',
         tap: 'tap 175ms ease-in alternate infinite',
         'expand-width': 'expand-width 390ms ease-out',
       },

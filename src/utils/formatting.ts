@@ -19,3 +19,7 @@ export function formatDuration(seconds: number): string {
 export function formatDate(date: Date | string) {
   return format(date instanceof Date ? date : new Date(date), 'd LLL y');
 }
+
+export function formatDateTime(date: Date | string) {
+  return format(date instanceof Date ? date : new Date(date), 'd LLL y HH:mm');
+}

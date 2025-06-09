@@ -28,7 +28,8 @@ export function Header() {
                   Sign out
                 </button>
               </div>
-              <div
+              <A
+                href={`/users/${auth.session()?.user?.id}`}
                 class='size-10 bg-contain rounded-full hover:animate-spin'
                 style={{
                   'background-image': `url(${auth.session()?.user?.image})`,

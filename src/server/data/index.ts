@@ -1,6 +1,7 @@
 'use server';
 
-import type { Beatmap, Beatmapset, User } from 'osu-api-v2-js';
+import type { Beatmap, Beatmapset, Score, User } from 'osu-api-v2-js';
+import { Ruleset } from 'osu-api-v2-js';
 import { circuit } from '~/utils/handlers';
 import { osu } from '../osu';
 import { cache } from '../cache';
@@ -96,11 +97,13 @@ export type SimilarBeatmaps = {
 };
 
 export async function getSimilarBeatmapsets(
-  beatmapId: number
+  beatmapId: number,
+  limit = 50
 ): Promise<SimilarBeatmaps | null> {
   const cached = await cache.get<SimilarBeatmaps>([
     'similar_beatmaps',
     beatmapId,
+    { limit },
   ]);
   if (cached) return cached;
 
@@ -110,7 +113,6 @@ export async function getSimilarBeatmapsets(
       .from(beatmaps)
       .where(eq(beatmaps.id, beatmapId))
   )[0];
-
   if (!beatmap?.embeddingR2) return null;
 
   const similarBeatmaps = await db
@@ -121,7 +123,8 @@ export async function getSimilarBeatmapsets(
     .from(beatmaps)
     .where(ne(beatmaps.id, beatmapId))
     .orderBy(beatmap => desc(beatmap.similarity))
-    .limit(50);
+    .limit(limit);
+
   const beatmapById = Object.groupBy(similarBeatmaps, beatmap => beatmap.id);
 
   const clients = await osu.getClients();
@@ -174,7 +177,57 @@ export async function getSimilarBeatmapsets(
     beatmapsets: Array.from(results.values()),
   };
 
-  await cache.set(['similar_beatmaps', beatmapId], result);
+  await cache.set(['similar_beatmaps', beatmapId, { limit }], result);
 
   return result;
+}
+
+export type RekosuUser = User.Extended;
+
+export async function getUser(userId: number) {
+  const cached = await cache.get<RekosuUser>(['user', userId]);
+  if (cached) return cached;
+
+  const clients = await osu.getClients();
+  const user = await circuit(
+    osu.perform(clients, client => client.getUser(userId))
+  );
+  if (!user) return null;
+
+  cache.set(['user', userId], user);
+
+  return user;
+}
+
+export type RekosuUserScore = Score.WithUserBeatmapBeatmapset;
+
+export async function getUserScores(
+  userId: number,
+  type: 'best' | 'firsts' | 'recent',
+  mode: keyof typeof Ruleset
+): Promise<RekosuUserScore[] | null> {
+  const clients = await osu.getClients();
+  const remoteScores = await circuit(
+    osu.perform(clients, client =>
+      client.getUserScores(userId, type, Ruleset[mode], undefined, {
+        limit: 50,
+      })
+    )
+  );
+  if (!remoteScores) return null;
+
+  const scoresByBeatmapId = Object.groupBy(
+    remoteScores,
+    score => score.beatmap.id
+  );
+  const scores = Object.keys(scoresByBeatmapId)
+    .map(
+      beatmapId =>
+        scoresByBeatmapId[beatmapId as unknown as number]!.sort(
+          (a, b) => b.ended_at.getTime() - a.ended_at.getTime()
+        )[0]
+    )
+    .sort((a, b) => b.ended_at.getTime() - a.ended_at.getTime());
+
+  return scores;
 }

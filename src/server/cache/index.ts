@@ -6,7 +6,9 @@ export const redis = new Redis({
 });
 
 function joinCompositeKey(key: unknown[]) {
-  return key.join('_');
+  return key
+    .map(k => (typeof k === 'object' ? JSON.stringify(k) : k))
+    .join('_');
 }
 
 async function get<TResult>(key: unknown[]): Promise<TResult | null> {

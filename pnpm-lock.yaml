@@ -81,6 +81,9 @@ importers:
         specifier: ^3.25.7
         version: 3.25.7
     devDependencies:
+      '@solid-primitives/intersection-observer':
+        specifier: ^2.2.1
+        version: 2.2.1(solid-js@1.9.7)
       '@types/node':
         specifier: ^20.11.26
         version: 20.17.47
@@ -1168,6 +1171,16 @@ packages:
 
   '@solid-mediakit/shared@0.0.6':
     resolution: {integrity: sha512-OFy6QAS9fXQicV4+FmLtOzgWAjYuO1FjQlta09qBjgpRENr+xZqiPP8gUlRT0nph/dr7NP18b1cWiCzThZWqkw==}
+
+  '@solid-primitives/intersection-observer@2.2.1':
+    resolution: {integrity: sha512-q8lTWTzagqBKihp8zu/W6226xdTPGyUWo4jNvqdJeZZoXpG5E1lGKEzidYWK1POqfvElBIC0pyEHxaoMlxfW5g==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
+  '@solid-primitives/utils@6.3.1':
+    resolution: {integrity: sha512-4/Z59nnwu4MPR//zWZmZm2yftx24jMqQ8CSd/JobL26TPfbn4Ph8GKNVJfGJWShg1QB98qObJSskqizbTvcLLA==}
+    peerDependencies:
+      solid-js: ^1.6.12
 
   '@solidjs/meta@0.29.4':
     resolution: {integrity: sha512-zdIWBGpR9zGx1p1bzIPqF5Gs+Ks/BH8R6fWhmUa/dcK1L2rUC8BAcZJzNRYBQv74kScf1TSOs0EY//Vd/I0V8g==}
@@ -5512,6 +5525,15 @@ snapshots:
     transitivePeerDependencies:
       - rollup
       - supports-color
+
+  '@solid-primitives/intersection-observer@2.2.1(solid-js@1.9.7)':
+    dependencies:
+      '@solid-primitives/utils': 6.3.1(solid-js@1.9.7)
+      solid-js: 1.9.7
+
+  '@solid-primitives/utils@6.3.1(solid-js@1.9.7)':
+    dependencies:
+      solid-js: 1.9.7
 
   '@solidjs/meta@0.29.4(solid-js@1.9.7)':
     dependencies:

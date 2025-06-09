@@ -10,10 +10,6 @@ export type GridProps = {
   beatmapsets: RekosuBeatmapset[];
 };
 
-export type SimilarProps = {
-  beatmapId: number;
-};
-
 export function Grid(props: GridProps) {
   return (
     <NavSuspense fallback={<Throbber />}>

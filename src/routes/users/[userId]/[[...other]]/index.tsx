@@ -1,11 +1,5 @@
 import { SectionHeader } from '~/features/ui/section-header';
-import data from '../similar-beatmapsets.json';
-import type {
-  RekosuBeatmap,
-  RekosuBeatmapset,
-  RekosuUser,
-  RekosuUserScore,
-} from '~/server/data';
+import type { RekosuBeatmap, RekosuUser, RekosuUserScore } from '~/server/data';
 import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
 import type { Accessor, JSX } from 'solid-js';
 import {
@@ -16,18 +10,11 @@ import {
   Match,
   Show,
   Suspense,
-  SuspenseList,
   Switch,
 } from 'solid-js';
 import { Throbber } from '~/features/ui/throbber';
-import {
-  A,
-  createAsync,
-  reload,
-  RouteDefinition,
-  useParams,
-  useSearchParams,
-} from '@solidjs/router';
+import type { RouteDefinition } from '@solidjs/router';
+import { A, createAsync, useParams, useSearchParams } from '@solidjs/router';
 import { ModeIcon } from '~/features/recommendations/mode-icon';
 import type {
   SimilarBeatmapsQuery,
@@ -46,7 +33,7 @@ import { DifficultyChip } from '~/features/recommendations/beatmapsets/grid/card
 import { createVisibilityObserver } from '@solid-primitives/intersection-observer';
 import { Card } from '~/features/recommendations/beatmapsets/grid/card';
 import { Error } from '~/features/ui/error';
-import { ErrorResponse } from '~/utils/errors';
+import type { ErrorResponse } from '~/utils/errors';
 
 export const route = {
   preload: ({ params }) => {

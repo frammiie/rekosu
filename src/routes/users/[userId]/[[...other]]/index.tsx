@@ -11,6 +11,7 @@ import {
   Show,
   Suspense,
   Switch,
+  untrack,
 } from 'solid-js';
 import { Throbber } from '~/features/ui/throbber';
 import type { RouteDefinition } from '@solidjs/router';
@@ -34,6 +35,7 @@ import { createVisibilityObserver } from '@solid-primitives/intersection-observe
 import { Card } from '~/features/recommendations/beatmapsets/grid/card';
 import { Error } from '~/features/ui/error';
 import type { ErrorResponse } from '~/utils/errors';
+import { usePageVisibility } from '@solid-primitives/page-visibility';
 
 export const route = {
   preload: ({ params }) => {
@@ -97,7 +99,7 @@ const filterSchema = z.object({
 });
 
 type ScoresFilter = Required<z.infer<typeof filterSchema>> & {
-  refreshCounter: number;
+  lastRefresh: number;
 };
 
 function Scores(props: ScoresProps) {
@@ -108,7 +110,7 @@ function Scores(props: ScoresProps) {
     type: initialSearchFilter.data?.type ?? 'recent',
     // eslint-disable-next-line solid/reactivity
     mode: initialSearchFilter.data?.mode ?? props.user.playmode,
-    refreshCounter: 0,
+    lastRefresh: Date.now(),
   });
 
   createEffect(() => {
@@ -129,9 +131,21 @@ function Scores(props: ScoresProps) {
   function handleRefreshClick() {
     setFilter(filter => ({
       ...filter,
-      refreshCounter: ++filter.refreshCounter,
+      lastRefresh: Date.now(),
     }));
   }
+
+  const visible = usePageVisibility();
+
+  createEffect(() => {
+    if (!visible()) return;
+
+    const _filter = untrack(filter);
+    if (_filter.type !== 'recent') return;
+    if (Date.now() - _filter.lastRefresh < 10_000) return;
+
+    handleRefreshClick();
+  });
 
   return (
     <>

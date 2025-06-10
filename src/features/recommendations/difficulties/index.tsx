@@ -33,10 +33,6 @@ export function Difficulties(props: DifficultiesProps) {
               <A
                 href={`/beatmaps/${difficulty.id}`}
                 onMouseOver={() => setActive(difficulty)}
-                data-umami-event='difficulty-change-click'
-                data-umami-event-difficulty-rating={
-                  difficulty.difficulty_rating
-                }
               >
                 <div
                   class='size-[38px] border-transparent border-2 rounded-[10px] hover:opacity-100 hover:border-white flex items-center justify-center'

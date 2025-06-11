@@ -71,7 +71,7 @@ export type UserScoresQuery = {
 export async function getUserScores(
   userId: number,
   type: 'best' | 'firsts' | 'recent',
-  mode: keyof typeof Ruleset
+  mode?: keyof typeof Ruleset
 ) {
   const scores = await data.getUserScores(userId, type, mode);
 

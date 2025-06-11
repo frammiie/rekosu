@@ -24,9 +24,6 @@ export function Grid(props: GridProps) {
               {beatmapset => <Card beatmapset={beatmapset} />}
             </For>
           </div>
-          <div class='text-xs text-[#fff6] text-center pt-[5px] pb-[15px]'>
-            End of results
-          </div>
         </Match>
       </Switch>
     </NavSuspense>

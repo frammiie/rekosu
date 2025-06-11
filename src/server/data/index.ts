@@ -204,14 +204,20 @@ export type RekosuUserScore = Score.WithUserBeatmapBeatmapset;
 export async function getUserScores(
   userId: number,
   type: 'best' | 'firsts' | 'recent',
-  mode: keyof typeof Ruleset
+  mode?: keyof typeof Ruleset
 ): Promise<RekosuUserScore[] | null> {
   const clients = await osu.getClients();
   const remoteScores = await circuit(
     osu.perform(clients, client =>
-      client.getUserScores(userId, type, Ruleset[mode], undefined, {
-        limit: 50,
-      })
+      client.getUserScores(
+        userId,
+        type,
+        mode != null ? Ruleset[mode] : undefined,
+        undefined,
+        {
+          limit: 50,
+        }
+      )
     )
   );
   if (!remoteScores) return null;

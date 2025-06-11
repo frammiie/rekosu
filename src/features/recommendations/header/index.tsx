@@ -3,7 +3,6 @@ import { Difficulties } from '../difficulties';
 import { HorizontalPlayer } from './horizontal-player';
 import { Throbber } from '~/features/ui/throbber';
 import { Error } from '~/features/ui/error';
-import { Portal } from 'solid-js/web';
 import { NavSuspense } from '~/features/ui/nav-suspense';
 import { Stats } from './stats';
 import { Metadata } from './metadata';
@@ -11,6 +10,7 @@ import type { ErrorResponse } from '~/utils/errors';
 import type { BeatmapDetailsQuery } from '~/server/queries';
 import { Mapper } from './mapper';
 import { Controls } from './controls';
+import { Backdrop } from '~/features/ui/backdrop';
 
 export type HeaderProps = {
   details: BeatmapDetailsQuery;
@@ -59,14 +59,7 @@ export function Header(props: HeaderProps) {
               <Metadata beatmap={beatmap()} beatmapset={beatmapset()} />
             </div>
           </div>
-          <Portal mount={document.getElementById('backdrop')!}>
-            <div
-              class='fixed inset-0 bg-cover bg-center'
-              style={{
-                'background-image': `url(${beatmapset().covers['cover@2x']})`,
-              }}
-            />
-          </Portal>
+          <Backdrop backgroundImage={beatmapset().covers['cover@2x']} />
         </Show>
       </NavSuspense>
     </div>

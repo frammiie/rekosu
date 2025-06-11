@@ -1,9 +1,11 @@
+import { useAuth } from '@solid-mediakit/auth/client';
 import { Title } from '@solidjs/meta';
-import { createAsync } from '@solidjs/router';
-import type { Accessor } from 'solid-js';
-import { Grid } from '~/features/recommendations/beatmapsets/grid';
+import { A, createAsync } from '@solidjs/router';
+import { Show, type Accessor } from 'solid-js';
+import { Beatmapsets } from '~/features/recommendations/beatmapsets';
 import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
-import { Search } from '~/features/recommendations/search';
+import { Scores } from '~/features/recommendations/scores';
+import { Backdrop } from '~/features/ui/backdrop';
 import { SectionHeader } from '~/features/ui/section-header';
 import {
   getRecentBeatmapsets,
@@ -11,6 +13,8 @@ import {
 } from '~/server/queries';
 
 export default function Home() {
+  const auth = useAuth();
+
   const recentBeatmapsets = createAsync(() =>
     getRecentBeatmapsets()
   ) as Accessor<RecentBeatmapsetsQuery>;
@@ -21,10 +25,27 @@ export default function Home() {
       <SectionHeader>Home</SectionHeader>
       <SectionHeader variant='secondary'>Recent Beatmaps</SectionHeader>
       <AudioPlayerProvider>
-        <Grid beatmapsets={recentBeatmapsets()?.beatmapsets} />
+        <Beatmapsets.Grid
+          beatmapsets={recentBeatmapsets()?.beatmapsets.slice(0, 8)}
+        />
+        <SectionHeader variant='secondary'>
+          Recent scores{' '}
+          <Show when={auth.session()?.user?.id != null}>
+            <A
+              href={`/users/${auth.session()?.user?.id}`}
+              class='ml-auto font-semibold text-xs'
+            >
+              View all
+            </A>
+          </Show>
+        </SectionHeader>
+        <Scores.Peek />
       </AudioPlayerProvider>
-      <SectionHeader variant='secondary'>Search</SectionHeader>
-      <Search />
+      <Backdrop
+        backgroundImage={
+          recentBeatmapsets()?.beatmapsets[0]?.covers['cover@2x']
+        }
+      />
     </main>
   );
 }

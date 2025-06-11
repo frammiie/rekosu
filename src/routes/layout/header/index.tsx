@@ -1,7 +1,7 @@
 import { useAuth } from '@solid-mediakit/auth/client';
 import { A } from '@solidjs/router';
 import { Switch, Match } from 'solid-js';
-import { ModeIcon } from '~/features/recommendations/mode-icon';
+import { LoginButton } from '~/features/ui/login-button';
 
 export function Header() {
   const auth = useAuth();
@@ -38,14 +38,7 @@ export function Header() {
             </div>
           </Match>
           <Match when={auth.status() === 'unauthenticated'}>
-            <button
-              class='font-medium p-[10px] px-[15px] rounded-full bg-pink-400 bg-opacity-25 flex gap-[10px] items-center'
-              onClick={() => auth.signIn('osu')}
-              data-umami-event='sign-in-click'
-            >
-              Sign in with osu!
-              <ModeIcon mode='osu' class='size-5 fill-white' />
-            </button>
+            <LoginButton />
           </Match>
         </Switch>
       </div>

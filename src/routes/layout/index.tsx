@@ -28,7 +28,7 @@ export function Layout(props: ParentProps) {
     <div class='flex flex-col items-center overflow-visible mx-5'>
       <div class='-z-20'>
         <div id='backdrop' />
-        <div class='fixed inset-0 bg-[#000b] backdrop-blur-xl' />
+        <div class='fixed inset-0 bg-[#000c] backdrop-blur-xl' />
       </div>
       <div class='absolute -z-10 w-full min-h-[160px] bg-[#fff1]' />
       <div class='w-full max-w-[1000px]'>

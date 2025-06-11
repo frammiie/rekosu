@@ -5,7 +5,6 @@ import type {
   SimilarBeatmapsQuery,
 } from '~/server/queries';
 import { getBeatmap, getSimilarBeatmapsets } from '~/server/queries';
-import { Grid } from '~/features/recommendations/beatmapsets/grid';
 import { Header } from '~/features/recommendations/header';
 import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
 import { SectionHeader } from '~/features/ui/section-header';
@@ -13,6 +12,7 @@ import { createEffect, Show, type Accessor } from 'solid-js';
 import { isServer } from 'solid-js/web';
 import { trackRecentBeatmapset } from '~/server';
 import { Title } from '@solidjs/meta';
+import { Beatmapsets } from '~/features/recommendations/beatmapsets';
 
 export const route = {
   preload: ({ params }) => {
@@ -28,7 +28,7 @@ export default function Beatmap() {
     getBeatmap(Number(params.beatmapId))
   ) as Accessor<BeatmapDetailsQuery>;
 
-  const similarBeatmaps = createAsync(() =>
+  const similarBeatmapsets = createAsync(() =>
     getSimilarBeatmapsets(Number(params.beatmapId))
   ) as Accessor<SimilarBeatmapsQuery>;
 
@@ -55,7 +55,7 @@ export default function Beatmap() {
             Similar beatmaps
             <span class='text-xs opacity-50'>Results might be inaccurate</span>
           </SectionHeader>
-          <Grid beatmapsets={similarBeatmaps()?.beatmapsets} />
+          <Beatmapsets.Grid beatmapsets={similarBeatmapsets()?.beatmapsets} />
         </div>
       </AudioPlayerProvider>
     </main>

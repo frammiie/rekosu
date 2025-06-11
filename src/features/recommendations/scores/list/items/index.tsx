@@ -68,7 +68,7 @@ export function Items(props: ItemsProps) {
       </div>
       <Backdrop
         backgroundImage={
-          scores.latest?.scores?.[0].beatmapset.covers['cover@2x']
+          scores.latest?.scores?.[0]?.beatmapset.covers['cover@2x']
         }
       />
     </AudioPlayerProvider>

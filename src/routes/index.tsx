@@ -29,7 +29,7 @@ export default function Home() {
           beatmapsets={recentBeatmapsets()?.beatmapsets.slice(0, 8)}
         />
         <SectionHeader variant='secondary'>
-          Recent scores{' '}
+          Recent Scores
           <Show when={auth.session()?.user?.id != null}>
             <A
               href={`/users/${auth.session()?.user?.id}`}

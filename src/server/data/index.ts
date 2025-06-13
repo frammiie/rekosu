@@ -222,18 +222,19 @@ export async function getUserScores(
   );
   if (!remoteScores) return null;
 
-  const scoresByBeatmapId = Object.groupBy(
-    remoteScores,
-    score => score.beatmap.id
+  const scoreCompareFn =
+    type === 'recent'
+      ? (a: RekosuUserScore, b: RekosuUserScore) =>
+          b.ended_at.getTime() - a.ended_at.getTime()
+      : (a: RekosuUserScore, b: RekosuUserScore) => (b.pp ?? 0) - (a.pp ?? 0);
+
+  const scoresByBeatmapId = Object.groupBy(remoteScores, score =>
+    String(score.beatmap.id)
   );
+
   const scores = Object.keys(scoresByBeatmapId)
-    .map(
-      beatmapId =>
-        scoresByBeatmapId[beatmapId as unknown as number]!.sort(
-          (a, b) => b.ended_at.getTime() - a.ended_at.getTime()
-        )[0]
-    )
-    .sort((a, b) => b.ended_at.getTime() - a.ended_at.getTime());
+    .map(beatmapId => scoresByBeatmapId[beatmapId]!.sort(scoreCompareFn)[0])
+    .sort(scoreCompareFn);
 
   return scores;
 }

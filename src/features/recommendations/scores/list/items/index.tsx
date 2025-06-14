@@ -33,6 +33,14 @@ export function Items(props: ItemsProps) {
       ) as Promise<UserScoresQuery | null>
   );
 
+  createEffect((prev?: RekosuUser) => {
+    if (prev?.id === props.user.id) return;
+
+    refetch();
+
+    return props.user;
+  });
+
   createEffect(prev => {
     if (!prev) return props.filter();
 

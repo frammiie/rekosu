@@ -10,7 +10,6 @@ import {
 import { AudioPlayerProvider } from '~/features/recommendations/context/audio-player';
 import { Throbber } from '~/features/ui/throbber';
 import { getUserScores } from '~/server';
-import type { RekosuUser } from '~/server/data';
 import type { UserScoresQuery } from '~/server/queries';
 import type { ErrorResponse } from '~/utils/errors';
 import type { Filter } from '..';
@@ -19,7 +18,6 @@ import { Error } from '~/features/ui/error';
 import { Backdrop } from '~/features/ui/backdrop';
 
 export type ItemsProps = {
-  user: RekosuUser;
   filter: Accessor<Filter>;
 };
 
@@ -27,19 +25,11 @@ export function Items(props: ItemsProps) {
   const [scores, { refetch }] = createResource<UserScoresQuery | null>(
     () =>
       getUserScores(
-        props.user.id,
+        props.filter().userId,
         props.filter().type,
         props.filter().mode
       ) as Promise<UserScoresQuery | null>
   );
-
-  createEffect((prev?: RekosuUser) => {
-    if (prev?.id === props.user.id) return;
-
-    refetch();
-
-    return props.user;
-  });
 
   createEffect(prev => {
     if (!prev) return props.filter();

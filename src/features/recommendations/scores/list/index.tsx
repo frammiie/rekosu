@@ -22,8 +22,20 @@ const filterSchema = z.object({
 });
 
 export type Filter = Required<z.infer<typeof filterSchema>> & {
+  userId: number;
   lastRefresh: number;
 };
+
+function getFilterDefaults(user: RekosuUser, searchParams: unknown): Filter {
+  const initialSearchFilter = filterSchema.safeParse(searchParams);
+
+  return {
+    userId: user.id,
+    type: initialSearchFilter.data?.type ?? 'recent',
+    mode: initialSearchFilter.data?.mode ?? user.playmode,
+    lastRefresh: Date.now(),
+  };
+}
 
 export type ListProps = {
   user: RekosuUser;
@@ -31,13 +43,18 @@ export type ListProps = {
 
 export function List(props: ListProps) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialSearchFilter = filterSchema.safeParse(searchParams);
 
-  const [filter, setFilter] = createSignal<Filter>({
-    type: initialSearchFilter.data?.type ?? 'recent',
+  const [filter, setFilter] = createSignal<Filter>(
     // eslint-disable-next-line solid/reactivity
-    mode: initialSearchFilter.data?.mode ?? props.user.playmode,
-    lastRefresh: Date.now(),
+    getFilterDefaults(props.user, searchParams)
+  );
+
+  createEffect((prev?: RekosuUser) => {
+    if (prev?.id == props.user.id) return;
+
+    setFilter(getFilterDefaults(props.user, searchParams));
+
+    return props.user;
   });
 
   createEffect(() => {
@@ -53,12 +70,11 @@ export function List(props: ListProps) {
     const queryFilter = filterSchema.safeParse(searchParams);
     if (!queryFilter.data) return;
 
-    const _filter = untrack(filter);
-    setFilter({
-      ..._filter,
-      type: queryFilter.data.type ?? _filter.type,
-      mode: queryFilter.data.mode ?? _filter.mode,
-    });
+    setFilter(filter => ({
+      ...filter,
+      type: queryFilter.data.type ?? filter.type,
+      mode: queryFilter.data.mode ?? filter.mode,
+    }));
   });
 
   function handleTypeChange(type: Filter['type']) {

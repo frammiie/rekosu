@@ -47,6 +47,20 @@ export function List(props: ListProps) {
     });
   });
 
+  createEffect(() => {
+    if (!Object.keys(searchParams).length) return;
+
+    const queryFilter = filterSchema.safeParse(searchParams);
+    if (!queryFilter.data) return;
+
+    const _filter = untrack(filter);
+    setFilter({
+      ..._filter,
+      type: queryFilter.data.type ?? _filter.type,
+      mode: queryFilter.data.mode ?? _filter.mode,
+    });
+  });
+
   function handleTypeChange(type: Filter['type']) {
     setFilter(filter => ({ ...filter, type }));
   }

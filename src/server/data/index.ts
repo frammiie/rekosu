@@ -33,6 +33,7 @@ export async function getBeatmap(
       .from(beatmaps)
       .where(eq(beatmaps.id, beatmapId))
   )[0];
+  if (!dbBeatmap) return null;
 
   remoteBeatmap.maxPp = dbBeatmap.maxPp;
 
@@ -144,6 +145,7 @@ export async function getSimilarBeatmapsets(
         remoteBeatmaps.map(beatmap => beatmap.id)
       )
     );
+
   const databaseBeatmapById = Object.groupBy(
     databaseBeatmaps,
     beatmap => beatmap.id

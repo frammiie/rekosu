@@ -1,5 +1,12 @@
 import { createVisibilityObserver } from '@solid-primitives/intersection-observer';
-import { createEffect, createResource, createSignal, For } from 'solid-js';
+import {
+  createEffect,
+  createResource,
+  createSignal,
+  For,
+  Match,
+  Switch,
+} from 'solid-js';
 import { Card } from '~/features/recommendations/beatmapsets/grid/card';
 import { getSimilarBeatmapsets } from '~/server';
 import type { RekosuUserScore } from '~/server/data';
@@ -43,13 +50,25 @@ export function GroupSimilarBeatmaps(props: GroupSimilarBeatmaps) {
   );
 
   return (
-    <div
-      ref={containerRef}
-      class='md:px-10 px-5 py-5 grid md:grid-cols-2 grid-cols-1 gap-[10px] w-full'
-    >
-      <For each={similarBeatmaps()?.beatmapsets.slice(0, 6)}>
-        {beatmapset => <Card beatmapset={beatmapset} />}
-      </For>
+    <div ref={containerRef}>
+      <Switch
+        fallback={
+          <div class='flex flex-col min-h-[200px] items-center justify-center text-[#fff8]'>
+            <div>No similar beatmaps found...</div>
+            <div class='text-xs flex flex-col items-center mt-2'>
+              It's likely the beatmap isn't known yet, check back later!
+            </div>
+          </div>
+        }
+      >
+        <Match when={similarBeatmaps()?.beatmapsets?.length}>
+          <div class='md:px-10 px-5 py-5 grid md:grid-cols-2 grid-cols-1 gap-[10px] w-full'>
+            <For each={similarBeatmaps()?.beatmapsets.slice(0, 6)}>
+              {beatmapset => <Card beatmapset={beatmapset} />}
+            </For>
+          </div>
+        </Match>
+      </Switch>
     </div>
   );
 }

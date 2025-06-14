@@ -54,12 +54,12 @@ export function Items(props: ItemsProps) {
             <Error response={scores.latest as unknown as ErrorResponse} />
           }
         >
-          <Match when={scores.latest?.scores.length}>
+          <Match when={scores.latest?.scores?.length}>
             <For each={scores.latest?.scores}>
               {(score, index) => <Group score={score} initialIndex={index()} />}
             </For>
           </Match>
-          <Match when={scores.latest?.scores.length === 0}>
+          <Match when={scores.latest?.scores?.length === 0}>
             <div class='min-h-[300px] md:px-10 px-5 flex items-center justify-center text-[#fff8]'>
               No scores found...
             </div>

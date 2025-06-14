@@ -27,12 +27,12 @@ export function Peek() {
           <Error response={recentScores() as unknown as ErrorResponse} />
         }
       >
-        <Match when={recentScores()?.scores.length}>
+        <Match when={recentScores()?.scores?.length}>
           <For each={recentScores()?.scores.slice(0, 2)}>
             {(score, index) => <Group score={score} initialIndex={index()} />}
           </For>
         </Match>
-        <Match when={recentScores()?.scores.length === 0}>
+        <Match when={recentScores()?.scores?.length === 0}>
           <div class='min-h-[300px] flex items-center justify-center text-[#fff8]'>
             <div>No scores found...</div>
           </div>

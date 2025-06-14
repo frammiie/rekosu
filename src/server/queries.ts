@@ -33,7 +33,7 @@ export type SimilarBeatmapsQuery = {
 export async function getSimilarBeatmapsets(beatmapId: number, limit = 50) {
   const similarBeatmaps = await data.getSimilarBeatmapsets(beatmapId, limit);
   if (!similarBeatmaps) {
-    return { beatmapsets: [] };
+    return notFound('Failed to find similar beatmaps...');
   }
 
   return similarBeatmaps;

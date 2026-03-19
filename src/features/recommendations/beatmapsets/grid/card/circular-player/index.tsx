@@ -8,7 +8,7 @@ export type CircularPlayerProps = {
 
 export function CircularPlayer(props: CircularPlayerProps) {
   const { playing, progress, handleToggle } = useAudio(
-    () => `https:${props.url}`,
+    () => props.url,
     () => props.id
   );
   const radius = 11;

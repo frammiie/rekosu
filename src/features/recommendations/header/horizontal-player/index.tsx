@@ -6,9 +6,7 @@ type PlayerProps = {
 };
 
 export function HorizontalPlayer(props: PlayerProps) {
-  const { playing, progress, handleToggle } = useAudio(
-    () => `https:${props.url}`
-  );
+  const { playing, progress, handleToggle } = useAudio(() => props.url);
 
   return (
     <div class='bg-[#0005] py-[5px] relative backdrop-blur-sm'>

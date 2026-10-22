@@ -62,7 +62,7 @@ export function GroupSimilarBeatmaps(props: GroupSimilarBeatmaps) {
         }
       >
         <Match when={similarBeatmaps()?.beatmapsets?.length}>
-          <div class='md:px-10 px-5 py-5 grid md:grid-cols-2 grid-cols-1 gap-[10px] w-full'>
+          <div class='md:px-10 p-5  grid md:grid-cols-2 grid-cols-1 gap-[10px] w-full'>
             <For each={similarBeatmaps()?.beatmapsets.slice(0, 6)}>
               {beatmapset => <Card beatmapset={beatmapset} />}
             </For>

@@ -19,7 +19,7 @@ export function Grid(props: GridProps) {
         }
       >
         <Match when={props.beatmapsets}>
-          <div class='md:px-10 px-5 py-5 grid md:grid-cols-2 grid-cols-1 gap-[10px]'>
+          <div class='md:px-10 p-5  grid md:grid-cols-2 grid-cols-1 gap-[10px]'>
             <For each={props.beatmapsets}>
               {beatmapset => <Card beatmapset={beatmapset} />}
             </For>

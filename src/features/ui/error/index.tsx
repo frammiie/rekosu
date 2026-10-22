@@ -11,7 +11,7 @@ export function Error(props: ErrorProps) {
   const auth = useAuth();
 
   return (
-    <div class='w-full h-full flex flex-col items-center justify-center my-auto'>
+    <div class='size-full  flex flex-col items-center justify-center my-auto'>
       <div class='text-[#fff8]'>
         <Show
           when={isError(props.response)}

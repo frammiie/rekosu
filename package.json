@@ -18,6 +18,7 @@
     "@types/pg": "^8.23.1",
     "drizzle-kit": "^0.31.11",
     "eslint": "^10.13.0",
+    "eslint-plugin-better-tailwindcss": "4.10.0",
     "eslint-plugin-solid": "^0.18.1",
     "prettier": "^3.9.10",
     "prettier-eslint": "^17.1.2",

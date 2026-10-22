@@ -34,7 +34,7 @@ export function NavSuspense(props: RouteSuspenseProps) {
   });
 
   return (
-    <div class='relative w-full h-full m-auto'>
+    <div class='relative size-full  m-auto'>
       <Suspense fallback={props.fallback}>
         {props.children}
         <Show when={showFallback()}>

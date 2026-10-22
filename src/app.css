@@ -26,12 +26,13 @@
     }
   }
 
+  /* Animates `scale` rather than `transform`, since v4's scale-x-* utilities use the `scale` property */
   @keyframes expand-width {
     0% {
-      transform: scaleX(0);
+      scale: 0 1;
     }
     100% {
-      transform: scaleX(1);
+      scale: 1 1;
     }
   }
 }

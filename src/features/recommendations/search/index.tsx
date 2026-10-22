@@ -6,7 +6,7 @@ export function Search() {
   const navigate = useNavigate();
 
   return (
-    <div class='flex flex-wrap gap-[10px] md:px-10 px-5 py-5'>
+    <div class='flex flex-wrap gap-[10px] md:px-10 p-5 '>
       <input
         type='search'
         placeholder='Enter a beatmap id'

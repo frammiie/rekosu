@@ -69,10 +69,10 @@ export function Card(props: CardProps) {
               <div class='truncate break-all leading-5'>
                 {props.beatmapset.title}
               </div>
-              <div class='text-sm truncate break-all leading-5'>
+              <div class='text-sm/5 truncate break-all '>
                 By {props.beatmapset.artist}
               </div>
-              <div class='text-xs leading-5 truncate break-all'>
+              <div class='text-xs/5  truncate break-all'>
                 mapped by{' '}
                 <A
                   href={`https://osu.ppy.sh/users/${props.beatmapset.user_id}`}
@@ -92,7 +92,7 @@ export function Card(props: CardProps) {
           <div class='flex flex-col gap-[2.5px]'>
             <For each={beatmaps()}>
               {(beatmap, index) => (
-                <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl px-0.5 py-0.5'>
+                <div class='flex gap-[5px] items-center text-sm hover:bg-[#fff1] rounded-xl p-0.5 '>
                   <A
                     href={`/beatmaps/${beatmap.id}`}
                     class='flex gap-[5px] items-center w-full'

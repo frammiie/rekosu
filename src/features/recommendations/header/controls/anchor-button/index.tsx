@@ -5,7 +5,7 @@ export function AnchorButton(props: ParentProps & AnchorProps) {
   return (
     <A
       target='_blank'
-      class='h-full p-[10px] bg-[#0005] hover:bg-[#0007] transition-colors text-xs font-medium flex items-center justify-center rounded-[10px] backdrop-blur-sm'
+      class='h-full p-[10px] bg-[#0005] hover:bg-[#0007] transition-colors text-xs font-medium flex items-center justify-center rounded-[10px] backdrop-blur-xs'
       data-umami-event-url={props.href}
       {...props}
     >

@@ -22,7 +22,7 @@ export function DifficultyChip(props: DifficultyChipProps) {
         width='24'
         height='24'
         viewBox='0 0 24 24'
-        class='size-3 flex-shrink-0'
+        class='size-3 shrink-0'
       >
         <path
           fill='currentColor'

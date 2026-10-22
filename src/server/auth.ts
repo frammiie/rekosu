@@ -1,10 +1,17 @@
-import { type SolidAuthConfig } from '@solid-mediakit/auth';
+import {
+  Auth,
+  createActionURL,
+  setEnvDefaults,
+  type AuthConfig,
+} from '@auth/core';
 import Osu from '@auth/core/providers/osu';
+import type { Session } from '@auth/core/types';
+import type { RequestEvent } from 'solid-js/web';
 import { serverEnv } from '~/env/server';
 import { circuit } from '~/utils/handlers';
 import { cache } from './cache';
 
-export const authOptions: SolidAuthConfig = {
+export const authOptions: AuthConfig = {
   providers: [
     Osu({
       clientId: String(serverEnv.AUTH_OSU_ID),
@@ -123,6 +130,48 @@ export const authOptions: SolidAuthConfig = {
   trustHost: serverEnv.AUTH_TRUST_HOST === 'true',
   secret: serverEnv.AUTH_OSU_SECRET,
 };
+
+setEnvDefaults(process.env, authOptions, true);
+
+export function handleAuth(request: Request) {
+  return Auth(request, authOptions);
+}
+
+export async function getSession(
+  event: RequestEvent,
+  options?: { forwardCookies?: boolean }
+): Promise<Session | null> {
+  const { request } = event;
+  const { protocol } = new URL(request.url);
+  const url = createActionURL(
+    'session',
+    protocol,
+    request.headers,
+    process.env,
+    authOptions
+  );
+
+  const response = await Auth(
+    new Request(url, {
+      headers: { cookie: request.headers.get('cookie') ?? '' },
+    }),
+    authOptions
+  );
+
+  // Forward refreshed session cookies to the client
+  if (options?.forwardCookies) {
+    for (const cookie of response.headers.getSetCookie()) {
+      event.response.headers.append('set-cookie', cookie);
+    }
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data?.message);
+  if (!data || !Object.keys(data).length) return null;
+
+  return data;
+}
 
 declare module '@auth/core/types' {
   export interface Session {

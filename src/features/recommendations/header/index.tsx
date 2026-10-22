@@ -51,7 +51,7 @@ export function Header(props: HeaderProps) {
 
               <Controls beatmap={beatmap()} beatmapset={beatmapset()} />
             </div>
-            <div class='md:ml-auto md:mt-auto min-w-[275px] flex flex-col gap-[1px]'>
+            <div class='md:ml-auto md:mt-auto min-w-[275px] flex flex-col gap-px'>
               <HorizontalPlayer url={beatmapset().preview_url} />
 
               <Stats beatmap={beatmap()} />

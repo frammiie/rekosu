@@ -1,4 +1,4 @@
-import { useAuth } from '@solid-mediakit/auth/client';
+import { useAuth } from '~/features/auth';
 import { Title } from '@solidjs/meta';
 import { A, createAsync } from '@solidjs/router';
 import { Show, type Accessor } from 'solid-js';

@@ -1,4 +1,4 @@
-import { useAuth } from '@solid-mediakit/auth/client';
+import { useAuth } from '~/features/auth';
 import { A } from '@solidjs/router';
 import { Switch, Match } from 'solid-js';
 import { LoginButton } from '~/features/ui/login-button';

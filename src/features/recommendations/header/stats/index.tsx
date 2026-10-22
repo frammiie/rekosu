@@ -8,7 +8,7 @@ export type StatsProps = {
 
 export function Stats(props: StatsProps) {
   return (
-    <div class='flex justify-evenly bg-[#0005] py-[12px] backdrop-blur-sm'>
+    <div class='flex justify-evenly bg-[#0005] py-[12px] backdrop-blur-xs'>
       <Stat>
         <svg
           xmlns='http://www.w3.org/2000/svg'

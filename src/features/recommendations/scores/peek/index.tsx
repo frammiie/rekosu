@@ -1,6 +1,6 @@
 import type { Accessor } from 'solid-js';
 import { Switch, Match, For } from 'solid-js';
-import { useAuth } from '@solid-mediakit/auth/client';
+import { useAuth } from '~/features/auth';
 import { createAsync } from '@solidjs/router';
 import { LoginButton } from '~/features/ui/login-button';
 import { getUserScores } from '~/server';

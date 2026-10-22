@@ -13,7 +13,7 @@ export function Grade(props: GradeProps) {
         'bg-pink-600 text-gray-200': props.grade === 'XH',
         'bg-sky-600 text-orange-300': props.grade === 'S',
         'bg-sky-600 text-gray-200': props.grade === 'SH',
-        'text-black text-opacity-50':
+        'text-black/50':
           props.grade.charCodeAt(0) >= 'A'.charCodeAt(0) &&
           props.grade.charCodeAt(0) <= 'F'.charCodeAt(0),
         'bg-lime-500': props.grade === 'A',

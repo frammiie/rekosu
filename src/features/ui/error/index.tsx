@@ -1,4 +1,4 @@
-import { useAuth } from '@solid-mediakit/auth/client';
+import { useAuth } from '~/features/auth';
 import { Show } from 'solid-js';
 import { isError, type ErrorResponse } from '~/utils/errors';
 import { Link } from '../link';

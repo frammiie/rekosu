@@ -1,6 +1,6 @@
 import { useLocation } from '@solidjs/router';
 import type { Accessor, ParentProps } from 'solid-js';
-import { createContext, createEffect, createSignal } from 'solid-js';
+import { createContext, createEffect, createSignal, on } from 'solid-js';
 
 export type AudioPlayerContext = {
   play: (id: string, url: string) => Promise<void>;
@@ -62,11 +62,12 @@ export function AudioPlayerProvider(props: ParentProps) {
   // Stop playing on navigation
   const location = useLocation();
 
-  createEffect(() => {
-    location.pathname;
-
-    handleEnded();
-  });
+  createEffect(
+    on(
+      () => location.pathname,
+      () => handleEnded()
+    )
+  );
 
   return (
     <AudioPlayerContext.Provider

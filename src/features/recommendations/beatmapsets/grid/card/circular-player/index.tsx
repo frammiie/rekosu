@@ -15,7 +15,7 @@ export function CircularPlayer(props: CircularPlayerProps) {
 
   return (
     <div class='size-full bg-[#0005] rounded-[10px] flex items-center justify-center'>
-      <div class='size-[50px] relative -ml-[10px] flex items-center justify-center'>
+      <div class='size-[50px] relative ml-[-10px] flex items-center justify-center'>
         <svg width='50' height='50' viewBox='0 0 25 25' class='size-[50px]'>
           <circle
             cx='50%'
@@ -29,7 +29,7 @@ export function CircularPlayer(props: CircularPlayerProps) {
               transform: 'rotate(-90deg)',
               'transform-origin': '50% 50%',
             }}
-            class='stroke-[#fffc] duration-[600ms]'
+            class='stroke-[#fffc] duration-600'
           />
         </svg>
         <button

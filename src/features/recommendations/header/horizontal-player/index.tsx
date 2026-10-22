@@ -9,7 +9,7 @@ export function HorizontalPlayer(props: PlayerProps) {
   const { playing, progress, handleToggle } = useAudio(() => props.url);
 
   return (
-    <div class='bg-[#0005] py-[5px] relative backdrop-blur-sm'>
+    <div class='bg-[#0005] py-[5px] relative backdrop-blur-xs'>
       <div class='flex justify-center'>
         <button
           onClick={handleToggle}
@@ -48,7 +48,7 @@ export function HorizontalPlayer(props: PlayerProps) {
         </button>
       </div>
       <div
-        class='bg-white h-[3px] w-full absolute bottom-0 origin-left duration-[600ms]'
+        class='bg-white h-[3px] w-full absolute bottom-0 origin-left duration-600'
         style={{ transform: `scaleX(${progress()})` }}
       />
     </div>

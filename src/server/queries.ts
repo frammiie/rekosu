@@ -4,6 +4,8 @@ import { cache } from './cache';
 import { notFound } from '~/utils/errors';
 import * as data from './data';
 import type { Ruleset } from 'osu-api-v2-js';
+import { getRequestEvent } from 'solid-js/web';
+import * as auth from './auth';
 
 export type BeatmapDetailsQuery = {
   beatmap: data.RekosuBeatmap;
@@ -80,4 +82,11 @@ export async function getUserScores(
   }
 
   return { scores };
+}
+
+export async function getSession() {
+  const event = getRequestEvent();
+  if (!event) return null;
+
+  return auth.getSession(event, { forwardCookies: true });
 }

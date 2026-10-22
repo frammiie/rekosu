@@ -22,7 +22,7 @@ export function Difficulties(props: DifficultiesProps) {
       style={{ 'text-shadow': 'none' }}
       onMouseLeave={() => setActive(props.selected)}
     >
-      <ol class='bg-[#0006] flex w-fit items-center rounded-[10px] backdrop-blur-sm flex-wrap'>
+      <ol class='bg-[#0006] flex w-fit items-center rounded-[10px] backdrop-blur-xs flex-wrap'>
         <For
           each={difficulties().sort(
             (a, b) => a.difficulty_rating - b.difficulty_rating

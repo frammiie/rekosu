@@ -113,7 +113,7 @@ export function List(props: ListProps) {
         onModeChange={handleModeChange}
         onRefresh={handleRefresh}
       />
-      <Items user={props.user} filter={filter} />
+      <Items filter={filter} />
     </>
   );
 }

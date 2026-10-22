@@ -10,12 +10,12 @@ export function Search() {
       <input
         type='search'
         placeholder='Enter a beatmap id'
-        class='p-[5px] px-[10px] rounded-full bg-[#fff1] focus:outline-none focus:outline-[#fff6] focus:-outline-offset-2 placeholder:text-[#fff6]'
+        class='p-[5px] px-[10px] rounded-full bg-[#fff1] focus:outline-hidden focus:outline-[#fff6] focus:-outline-offset-2 placeholder:text-[#fff6]'
         value={id()}
         onChange={e => setId(e.currentTarget.value)}
       />
       <button
-        class='p-[5px] px-[20px] rounded-full bg-[#fff1] focus:outline-none focus:outline-[#fff6] focus:-outline-offset-2'
+        class='p-[5px] px-[20px] rounded-full bg-[#fff1] focus:outline-hidden focus:outline-[#fff6] focus:-outline-offset-2'
         onClick={() => navigate(`/beatmaps/${id()}`)}
       >
         Go

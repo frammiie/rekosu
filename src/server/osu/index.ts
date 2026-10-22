@@ -1,8 +1,7 @@
-import { getSession } from '@solid-mediakit/auth';
 import { API, APIError } from 'osu-api-v2-js';
 import { getRequestEvent } from 'solid-js/web';
 import { serverEnv } from '~/env/server';
-import { authOptions } from '../auth';
+import { getSession } from '../auth';
 import { cache } from '../cache';
 
 let client: API | null = null;
@@ -24,7 +23,7 @@ async function getClients() {
   let userClient: API | null = null;
   const requestEvent = getRequestEvent();
   if (requestEvent) {
-    const session = await getSession(requestEvent, authOptions);
+    const session = await getSession(requestEvent);
 
     if (session && session.osu.accessToken && !session.error) {
       userClient = new API({
@@ -50,10 +49,7 @@ function perform<TResult>(
       try {
         return await action(client);
       } catch (error) {
-        if (
-          error! instanceof APIError ||
-          (error as APIError).status_code !== 401
-        )
+        if (!(error instanceof APIError) || error.response?.status_code !== 401)
           throw error;
 
         console.error(error);
@@ -62,7 +58,7 @@ function perform<TResult>(
         const requestEvent = getRequestEvent();
         if (!requestEvent) return null;
 
-        const session = await getSession(requestEvent, authOptions);
+        const session = await getSession(requestEvent);
         if (!session) return null;
 
         await cache.set(['session_valid', session.osu.id], false);

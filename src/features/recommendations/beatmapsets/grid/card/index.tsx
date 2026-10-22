@@ -59,12 +59,12 @@ export function Card(props: CardProps) {
           </div>
         </div>
         <div
-          class='bg-cover bg-center w-full rounded-[10px] -ml-[10px] min-w-0'
+          class='bg-cover bg-center w-full rounded-[10px] ml-[-10px] min-w-0'
           style={{
             'background-image': `url(${props.beatmapset.covers['card@2x']})`,
           }}
         >
-          <div class='bg-gradient-to-r from-[#1a1a1a] to-[#0009] p-[10px] -ml-[10px] rounded-[10px] h-full flex'>
+          <div class='bg-linear-to-r from-[#1a1a1a] to-[#0009] p-[10px] ml-[-10px] rounded-[10px] h-full flex'>
             <div class='min-w-0 flex flex-col'>
               <div class='truncate break-all leading-5'>
                 {props.beatmapset.title}
@@ -99,7 +99,7 @@ export function Card(props: CardProps) {
                   >
                     <ModeIcon
                       mode={beatmap.mode}
-                      class='size-4 fill-white flex-shrink-0'
+                      class='size-4 fill-white shrink-0'
                     />
                     <DifficultyChip
                       difficultyRating={beatmap.difficulty_rating}
@@ -112,7 +112,7 @@ export function Card(props: CardProps) {
                           <Progress
                             value={beatmap.similarity}
                             color={similarityColor(beatmap.similarity)}
-                            class='md:w-[100px] w-[75px] flex-shrink-0'
+                            class='md:w-[100px] w-[75px] shrink-0'
                             delay={index() * 50}
                           />
                         </div>

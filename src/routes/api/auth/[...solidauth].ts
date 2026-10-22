@@ -1,4 +1,5 @@
-import { SolidAuth } from '@solid-mediakit/auth';
-import { authOptions } from '~/server/auth';
+import type { APIEvent } from '@solidjs/start/server';
+import { handleAuth } from '~/server/auth';
 
-export const { GET, POST } = SolidAuth(authOptions);
+export const GET = (event: APIEvent) => handleAuth(event.request);
+export const POST = GET;

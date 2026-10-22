@@ -1,6 +1,6 @@
 services:
   database:
-    build: ./docker/database
+    image: pgvector/pgvector:pg17-trixie
     environment:
       POSTGRES_USER:
       POSTGRES_PASSWORD:
@@ -21,7 +21,7 @@ services:
     restart: always
 
   analytics:
-    image: ghcr.io/umami-software/umami:postgresql-latest
+    image: docker.umami.is/umami-software/umami:postgresql-latest
     ports:
       - "3001:3000"
     environment:

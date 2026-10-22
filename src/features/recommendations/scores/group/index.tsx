@@ -32,7 +32,7 @@ export function Group(props: GroupProps) {
       >
         <div class='md:px-10 px-5 bg-[#000a] h-full flex items-center gap-[10px]'>
           <Grade grade={props.score.rank} />
-          <div class='relative -top-[2px] min-w-0'>
+          <div class='relative top-[-2px] min-w-0'>
             <A
               href={`/beatmaps/${beatmap().id}`}
               class='font-semibold block truncate'

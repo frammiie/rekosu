@@ -1,4 +1,4 @@
-FROM postgres:17.5
+FROM postgres:17.6
 
 USER root
 RUN apt-get update && apt-get install -y \
@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
-    && git clone https://github.com/pgvector/pgvector.git \
+    && git clone --branch v0.8.1 https://github.com/pgvector/pgvector.git \
     && cd pgvector \
     && make \
     && make install

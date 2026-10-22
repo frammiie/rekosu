@@ -1,4 +1,4 @@
-import { useAuth } from '@solid-mediakit/auth/client';
+import { useAuth } from '~/features/auth';
 import type { ParentProps } from 'solid-js';
 import { ErrorBoundary } from 'solid-js';
 import { isServer } from 'solid-js/web';

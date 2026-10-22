@@ -1,18 +1,62 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --animate-fade-in: fade-in 200ms ease-in-out;
+  --animate-delayed-fade-in: fade-in 200ms ease-in-out 1s forwards;
+  --animate-tap: tap 175ms ease-in alternate infinite;
+  --animate-expand-width: expand-width 390ms ease-out;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes tap {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes expand-width {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Tailwind v4 no longer sets a pointer cursor on buttons, restore v3 behavior */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 @font-face {
-    font-family: 'Fredoka';
-    font-style: normal;
-    font-weight: 300 700;
-    font-display: swap;
-    src: url(/assets/fonts/fredoka.ttf);
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(/assets/fonts/fredoka.ttf);
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
 body {
-    font-family: 'Fredoka', system-ui;
-    color: white;
-    background-color: #171a1c;
+  color: white;
+  background-color: #171a1c;
 }

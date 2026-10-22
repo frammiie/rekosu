@@ -5,12 +5,12 @@
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsxImportSource": "solid-js",
     "resolveJsonModule": true,
     "jsx": "preserve",
-    "types": ["vite/client", "@solidjs/start/env", "@types/umami-browser"],
-    "baseUrl": "./",
+    "skipLibCheck": true,
+    "types": ["node", "@solidjs/start/env", "@types/umami-browser"],
     "paths": {
       "~/*": ["./src/*"]
     }

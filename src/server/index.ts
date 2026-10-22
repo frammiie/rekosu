@@ -5,6 +5,7 @@ import {
   getRecentBeatmapsets as gRBMS,
   getUser as gU,
   getUserScores as gUS,
+  getSession as gS,
 } from './queries';
 import { trackRecentBeatmapset as tRBMS } from './actions';
 
@@ -13,5 +14,6 @@ export const getSimilarBeatmapsets = query(gSB, 'getSimilarBeatmapsets');
 export const getRecentBeatmapsets = query(gRBMS, 'getRecentBeatmapsets');
 export const getUser = query(gU, 'getUser');
 export const getUserScores = query(gUS, 'getUserScores');
+export const getSession = query(gS, 'getSession');
 
 export const trackRecentBeatmapset = action(tRBMS, 'trackRecentBeatmapset');

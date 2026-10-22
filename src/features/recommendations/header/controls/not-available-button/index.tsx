@@ -8,7 +8,7 @@ export type NotAvailableProps = {
 
 export function NotAvailableButton(props: NotAvailableProps) {
   return (
-    <div class='my-auto px-[10px] h-full bg-[#0006] backdrop-blur-sm rounded-[10px] flex flex-col justify-center'>
+    <div class='my-auto px-[10px] h-full bg-[#0006] backdrop-blur-xs rounded-[10px] flex flex-col justify-center'>
       <div class='text-yellow-500 text-xs font-medium'>
         This beatmapset is currently not available
       </div>
